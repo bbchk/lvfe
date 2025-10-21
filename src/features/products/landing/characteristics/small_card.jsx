@@ -1,10 +1,10 @@
-import ImageFallback from 'comps/image/fallback_image.js'
+import ImageFallback from 'comps/image/fallback_images'
 import s from './small_card.module.scss'
 
 const Small_Card = ({ product: { images, name } }) => {
   return (
     <div className={`${s.small_card} `}>
-      <imgFallback
+      <ImageFallback
         src={images && images[0]}
         fallbackSrc={'/assets/goods_placeholder.svg'}
         alt='Picture of the product'

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import s from './product_figure.module.scss'
 import { Carousel, CarouselItem } from '/comps/carousel/carousel'
-import ImageFallback from 'comps/image/fallback_image.js'
+import ImageFallback from 'comps/image/fallback_image'
 
 const ProductFigure = ({ images }) => {
   const [selectedImageIdx, setSelectedImageIdx] = useState(0)
@@ -15,7 +15,7 @@ const ProductFigure = ({ images }) => {
   return (
     <section className={`${s.landing_product_figure}`}>
       <div className={`${s.figure}`}>
-        <imgFallback
+        <ImageFallback
           src={images[selectedImageIdx]}
           fallbackSrc={'/assets/goods_placeholder.svg'}
           alt='товар'

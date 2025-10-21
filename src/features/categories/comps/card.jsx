@@ -4,10 +4,10 @@ import s from "./card.module.scss";
 import { slugify } from "@bbuukk/slugtrans/slugify";
 import { transliterate } from "@bbuukk/slugtrans/transliterate";
 
-import { startLoading } from "store/slices/global_comps/global_comps.slice.js";
-import ImageFallback from "comps/image/fallback_image.js";
+import { startLoading } from "store/slices/global_comps/global_comps.slice";
+import ImageFallback from "comps/image/fallback_image";
 import { useId } from "react";
-import TabIndexButton from "comps/accessibility/indexTabButton.js";
+import TabIndexButton from "comps/accessibility/indexTabButton";
 
 const Card = ({ category, subcategories }) => {
   const dispatch = useDispatch();
@@ -37,7 +37,7 @@ const Card = ({ category, subcategories }) => {
         onClick={() => handleClick()}
         aria-label={`${category.name} основна категорія`}
       >
-        <imgFallback
+        <ImageFallback
           src={category.imagePath}
           fallbackSrc={"/assets/goods_placeholder.svg"}
           alt={`Основна категорія ${category.name}`}

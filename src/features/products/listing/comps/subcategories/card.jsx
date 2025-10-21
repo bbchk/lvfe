@@ -1,33 +1,32 @@
+import s from "./card.module.scss";
 
-import s from './card.module.scss'
-
-import { slugify } from '@bbuukk/slugtrans/slugify'
-import { transliterate } from '@bbuukk/slugtrans/transliterate'
-import ImageFallback from 'comps/image/fallback_image.js'
+import { slugify } from "@bbuukk/slugtrans/slugify";
+import { transliterate } from "@bbuukk/slugtrans/transliterate";
+import ImageFallback from "comps/image/fallback_image";
 
 const SubcategoryCard = ({ category }) => {
-  const { name, imagePath } = category
+  const { name, imagePath } = category;
 
   const categoryPathSlug = `/products/${slugify(
     transliterate(category.path),
-  )}/page=1`
+  )}/page=1`;
 
   return (
     <a href={categoryPathSlug} as={categoryPathSlug} className={`${s.card}`}>
-      <imgFallback
+      <ImageFallback
         src={imagePath}
-        fallbackSrc={'/assets/goods_placeholder.svg'}
+        fallbackSrc={"/assets/goods_placeholder.svg"}
         width={150}
         height={150}
-        sizes='(max-width: 768px) 25vw,(max-width: 1200px) 151vw, 10vw'
-        alt='підкатегорія'
+        sizes="(max-width: 768px) 25vw,(max-width: 1200px) 151vw, 10vw"
+        alt="підкатегорія"
         // priority
       />
       <div>
         <p> {name}</p>
       </div>
     </a>
-  )
-}
+  );
+};
 
-export default SubcategoryCard
+export default SubcategoryCard;

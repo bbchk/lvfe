@@ -4,13 +4,11 @@ import React, { useRef } from 'react'
 
 import useObserver from 'hooks/useObserver.js'
 
-import { balsamiqSansClass } from '../../../App.jsx'
-
 import AboutUs from './comps/about_us'
 import WorkHours from './comps/work_hours'
 import Contacts from './comps/contacts'
 
-import LoadingSpinner from 'comps/loading/spinner'
+// import LoadingSpinner from 'comps/loading/spinner'
 const Location = React.lazy(() => import('./comps/location'))
 
 const Footer = () => {
@@ -20,7 +18,7 @@ const Footer = () => {
   return (
     <footer
       ref={footerRef}
-      className={` ${s.footer} ${balsamiqSansClass}`}
+      className={` ${s.footer} balsamiq-sans`}
     >
       <div className={`${s.decor_line}`} />
       <div className={`row ${s.row}`}>

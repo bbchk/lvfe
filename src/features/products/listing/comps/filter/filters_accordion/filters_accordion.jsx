@@ -5,7 +5,6 @@ import s from './filters_accordion.module.scss'
 
 import AccordionItem from 'comps/accordion/accordion_item'
 import TabIndexButton from 'comps/accessibility/indexTabButton'
-
 //   //todo sometimes it changes filterValues when another one is chosen
 //   //todo fix all remaining english options in filters
 //   //todo why filters render in wrong order, brand got to be first

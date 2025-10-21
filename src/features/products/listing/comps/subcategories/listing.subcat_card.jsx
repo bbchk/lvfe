@@ -3,7 +3,7 @@ import s from './listing.subcat_card.module.scss'
 
 import { slugify } from '@bbuukk/slugtrans/slugify'
 import { transliterate } from '@bbuukk/slugtrans/transliterate'
-import ImageFallback from 'comps/image/fallback_image.js'
+import ImageFallback from 'comps/image/fallback_images'
 
 const SubcategoryCard = ({ category }) => {
   const { name, imagePath } = category
@@ -14,7 +14,7 @@ const SubcategoryCard = ({ category }) => {
 
   return (
     <a href={categoryPathSlug} as={categoryPathSlug} className={`${s.card}`}>
-      <imgFallback
+      <ImageFallback
         src={imagePath}
         fallbackSrc={'/assets/goods_placeholder.svg'}
         width={150}

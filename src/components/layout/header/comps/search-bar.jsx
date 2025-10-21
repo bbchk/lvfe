@@ -1,42 +1,59 @@
-import { useNavigate, useLocation } from 'react-router-dom'
-import { useState, useEffect, use } from 'react'
-import s from './search-bar.module.scss'
-import hs from '../header.module.scss'
-import { SearchRounded } from '@mui/icons-material'
-import useDoOnKey from 'hooks/useDoOnKey.js'
-import { startLoading } from 'store/slices/global_comps/global_comps.slice'
-import { useDispatch } from 'react-redux'
-import { slugify, unslugify } from '@bbuukk/slugtrans/slugify'
-import { transliterate, untransliterate } from '@bbuukk/slugtrans/transliterate'
+import { useState, useEffect } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { SearchRounded } from '@mui/icons-material';
+
+import s from './search-bar.module.scss';
+import hs from '../header.module.scss';
+
+import useDoOnKey from 'hooks/useDoOnKey.js';
+import { startLoading } from 'store/slices/global_comps/global_comps.slice';
+import { slugify, unslugify } from '@bbuukk/slugtrans/slugify';
+import { transliterate, untransliterate } from '@bbuukk/slugtrans/transliterate';
 
 const SearchBar = () => {
-  const router = useRouter()
-  const { categoryPath } = router.query
-  const dispatch = useDispatch()
-  useDoOnKey('Escape', () => document.getElementById('search_bar_input').blur())
+  // --- Start of Fix ---
+  const navigate = useNavigate();
+  const { categoryPath } = useParams(); // Get URL params from react-router-dom
+  // --- End of Fix ---
 
-  useEffect(() => {
-    const isSearchPage = categoryPath?.includes('search=')
-    if (isSearchPage) {
-      const slugQuery = categoryPath.split('search=')[1]
-      const query = untransliterate(unslugify(slugQuery))
-      setSearchText(query)
-    } else {
-      setSearchText('')
+  const dispatch = useDispatch();
+  const [searchText, setSearchText] = useState('');
+
+  // Custom hook to handle the "Escape" key press
+  useDoOnKey('Escape', () => {
+    const searchInput = document.getElementById('search_bar_input');
+    if (searchInput) {
+      searchInput.blur();
     }
-  }, [categoryPath])
+  });
 
-  const [searchText, setSearchText] = useState('')
-  const [isLoading, setIsLoading] = useState(false)
-  const [error, setError] = useState(false)
+  // Effect to sync the search bar text with the URL
+  useEffect(() => {
+    const isSearchPage = categoryPath?.includes('search=');
+    if (isSearchPage) {
+      // Extract the search query from the URL parameter
+      const slugQuery = categoryPath.split('search=')[1];
+      const query = untransliterate(unslugify(slugQuery));
+      setSearchText(query);
+    } else {
+      // Clear the search text if not on a search page
+      setSearchText('');
+    }
+  }, [categoryPath]);
 
-  const handleSearch = async (e) => {
-    e.preventDefault()
+  const handleSearch = (e) => {
+    e.preventDefault();
+    if (!searchText.trim()) return; // Don't search for empty strings
 
-    dispatch(startLoading())
-    const query = slugify(transliterate(searchText))
-    router.push(`/products/search=${query}/page=1`)
-  }
+    dispatch(startLoading());
+    const query = slugify(transliterate(searchText));
+
+    // --- Start of Fix ---
+    // Use the navigate function to change the URL
+    navigate(`/products/search=${query}/page=1`);
+    // --- End of Fix ---
+  };
 
   return (
     <form
@@ -52,7 +69,6 @@ const SearchBar = () => {
         aria-label='Пошукова стрічка'
         value={searchText}
         onChange={(e) => setSearchText(e.target.value)}
-        disabled={isLoading}
       />
       <button
         className={`button_submit ${s.search_button}`}
@@ -63,7 +79,7 @@ const SearchBar = () => {
         <SearchRounded />
       </button>
     </form>
-  )
-}
+  );
+};
 
-export default SearchBar
+export default SearchBar;

@@ -1,39 +1,13 @@
-import React, { useEffect, Suspense, lazy } from "react";
+import { lazy, Suspense, useEffect } from "react";
 import { Routes, Route, useLocation } from "react-router-dom";
 import { useSelector } from "react-redux";
 
-import useOnUserTabbing from "hooks/use_is_user_tabbing";
 import LoadingOverlay from "comps/loading/overlay";
-import SkipToMainContent from "comps/accessibility/skip_to_main_content";
 
-// Lazy load components
+// Lazily-loaded components
 const CustomHotkeys = lazy(() => import("comps/accessibility/hotkeys.jsx"));
 const Header = lazy(() => import("comps/layout/header/header.jsx"));
 const Footer = lazy(() => import("comps/layout/footer/footer.jsx"));
-
-// Lazy load modals
-const MainOffcanvas = lazy(
-  () => import("comps/modals/main_offcanvas/main_offcanvas.jsx"),
-);
-const ChangePasswordModal = lazy(
-  () => import("comps/modals/change_password/change_password_modal.jsx"),
-);
-const SignInModal = lazy(
-  () => import("comps/modals/auth/sign_in_modal/sign_in_modal.jsx"),
-);
-const SignUpModal = lazy(
-  () => import("comps/modals/auth/sign_up_modal/sign_up_modal.jsx"),
-);
-const DeleteAccountModal = lazy(
-  () => import("comps/modals/delete_account/delete_account_modal.jsx"),
-);
-const CartModal = lazy(() => import("comps/modals/cart/cart_modal.jsx"));
-const WriteReviewModal = lazy(
-  () => import("comps/modals/reviews/write_review_modal.jsx"),
-);
-const HotkeysModal = lazy(
-  () => import("comps/modals/hotkeys/hotkeys.modal.jsx"),
-);
 
 // Lazy load pages
 const Home = lazy(() => import("pages/Home"));
@@ -48,19 +22,13 @@ const WishList = lazy(() => import("pages/user/WishList"));
 const OrdersList = lazy(() => import("pages/user/OrdersList"));
 const NotFound = lazy(() => import("comps/layout/404.jsx"));
 
-// Font classes
+// You were using this variable but had it commented out.
 const balsamiqSansClass = "balsamiq-sans";
-const pacificoClass = "pacifico";
 
 function App() {
   const location = useLocation();
 
-  useOnUserTabbing(() => {
-    if (typeof document !== "undefined") {
-      document.body.classList.add("user-is-tabbing");
-    }
-  });
-
+  // Effect to scroll to the top of the page on route change
   useEffect(() => {
     window.scrollTo({
       top: 0,
@@ -70,15 +38,12 @@ function App() {
 
   return (
     <div className="App">
+      {/* A single top-level Suspense for all lazy-loaded components */}
       <Suspense fallback={<LoadingOverlay loading={true} />}>
-        <CustomHotkeys />
-        <SkipToMainContent mainContentId={"main_content"} />
-
         <Header />
 
         <div className={balsamiqSansClass} style={{ minHeight: "100vh" }}>
           <MainContent />
-          <Modals />
         </div>
 
         <Footer />
@@ -94,6 +59,7 @@ function MainContent() {
     <>
       <LoadingOverlay loading={loading} />
 
+      {/* Suspense for the routed pages */}
       <Suspense fallback={<LoadingOverlay loading={true} />}>
         <Routes>
           {/* Home */}
@@ -130,31 +96,31 @@ function MainContent() {
   );
 }
 
-function Modals() {
-  const {
-    signInModalOpen,
-    signUpModalOpen,
-    changePasswordModalOpen,
-    deleteAccountModalOpen,
-    cartModalOpen,
-    writeReviewModalOpen,
-    hotkeysModalOpen,
-    mainOffcanvasOpen,
-  } = useSelector((state) => state.modals);
+// Don't forget to export your main App component
+// function Modals() {
+//   const {
+//     signInModalOpen,
+//     signUpModalOpen,
+//     changePasswordModalOpen,
+//     deleteAccountModalOpen,
+//     cartModalOpen,
+//     writeReviewModalOpen,
+//     hotkeysModalOpen,
+//     mainOffcanvasOpen,
+//   } = useSelector((state) => state.modals);
+//
+//   return (
+//     <Suspense fallback={null}>
+//       {mainOffcanvasOpen && <MainOffcanvas />}
+//       {deleteAccountModalOpen && <DeleteAccountModal />}
+//       {changePasswordModalOpen && <ChangePasswordModal />}
+//       {signInModalOpen && <SignInModal />}
+//       {signUpModalOpen && <SignUpModal />}
+//       {writeReviewModalOpen && <WriteReviewModal />}
+//       {cartModalOpen && <CartModal />}
+//       {hotkeysModalOpen && <HotkeysModal />}
+//     </Suspense>
+//   );
+// }
 
-  return (
-    <Suspense fallback={null}>
-      {mainOffcanvasOpen && <MainOffcanvas />}
-      {deleteAccountModalOpen && <DeleteAccountModal />}
-      {changePasswordModalOpen && <ChangePasswordModal />}
-      {signInModalOpen && <SignInModal />}
-      {signUpModalOpen && <SignUpModal />}
-      {writeReviewModalOpen && <WriteReviewModal />}
-      {cartModalOpen && <CartModal />}
-      {hotkeysModalOpen && <HotkeysModal />}
-    </Suspense>
-  );
-}
-
-export { balsamiqSansClass, pacificoClass };
 export default App;

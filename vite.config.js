@@ -7,7 +7,7 @@ export default defineConfig({
   plugins: [react()],
   resolve: {
     alias: {
-      '@': path.resolve(__dirname, './src'),
+      '@src': path.resolve(__dirname, './src'),
       'comps': path.resolve(__dirname, './src/components'),
       'features': path.resolve(__dirname, './src/features'),
       'hooks': path.resolve(__dirname, './src/hooks'),
@@ -15,7 +15,8 @@ export default defineConfig({
       'styles': path.resolve(__dirname, './src/styles'),
       'utils': path.resolve(__dirname, './src/utils'),
       'pages': path.resolve(__dirname, './src/pages'),
-    }
+    },
+    extensions: ['.js', '.ts', '.jsx', '.tsx'],
   },
   css: {
     preprocessorOptions: {
@@ -35,7 +36,7 @@ export default defineConfig({
   // plugins: [Inspect()],
   base: '/',
   build: {
-    outDir: resolve(__dirname, './dist'),
+    outDir: path.resolve(__dirname, './dist'),
     sourcemap: true,
     // emptyOutDir: true
     minify: true,

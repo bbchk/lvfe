@@ -1,17 +1,17 @@
-import SearchBar from './comps/search-bar'
-import ButtonGroup from './comps/button_group/button_group'
-import Logo from './comps/logo'
-import OffcanvasToggler from './comps/offcanvas/main_offcanvas.toggler'
-import s from './header.module.scss'
-import { useSelector } from 'react-redux'
-import { balsamiqSans } from '#src/App.jsx'
+import SearchBar from "./comps/search-bar";
+import ButtonGroup from "./comps/button_group/button_group";
+import Logo from "./comps/logo";
+import OffcanvasToggler from "./comps/offcanvas/main_offcanvas.toggler";
+
+import s from "./header.module.scss";
+import { useSelector } from "react-redux";
 
 const Header = () => {
-  const { loading } = useSelector((state) => state.modals)
+  const { loading } = useSelector((state) => state.modals);
 
   return (
     <header className={`${s.header_container}`}>
-      <nav className={`${s.header} ${balsamiqSans.className}`}>
+      <nav className={`${s.header} balsamiq-sans`}>
         <OffcanvasToggler />
         <Logo />
         <SearchBar />
@@ -21,7 +21,7 @@ const Header = () => {
         {loading && <div className={s.loader_line} />}
       </div>
     </header>
-  )
-}
+  );
+};
 
-export default Header
+export default Header;

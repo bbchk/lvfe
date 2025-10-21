@@ -1,4 +1,4 @@
-import ImageFallback from 'comps/image/fallback_image.js'
+import ImageFallback from 'comps/image/fallback_image'
 
 import s from './figure.module.scss'
 import lcs from '../listing_card.module.scss'
@@ -16,7 +16,7 @@ const ProductFigure = ({ product, productUrl, priority }) => {
       aria-label='Перейти до сторінки товару'
     >
       <figure className={`${s.figure} `}>
-        <imgFallback
+        <ImageFallback
           src={
             //todo implement displaying many images on hover
             product.images && product.images[0]

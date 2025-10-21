@@ -4,30 +4,19 @@ import { BrowserRouter } from 'react-router-dom'
 import { Provider } from 'react-redux'
 import { HelmetProvider } from 'react-helmet-async'
 
-import App from './App'
-import { store } from './store/store'
-import { AuthProvider } from './contexts/AuthContext'
+import App from '@src/App'
+import { store } from '@src/store/store'
+import { AuthProvider } from '@src/contexts/AuthContext'
 
-// Import global styles
 import 'styles/globals.scss'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import '@mui/material/styles'
 
-// Configure axios
 import axios from 'axios'
-axios.defaults.baseURL = import.meta.env.VITE_BACKEND_URL || 'http://localhost:5000'
+axios.defaults.baseURL = import.meta.env.VITE_BACKEND_URL;
 
-// Enable immer MapSet
 import { enableMapSet } from 'immer'
 enableMapSet()
-
-/* eslint-disable */
-if (import.meta.env.PROD) {
-  console.log = function () {}
-  console.warn = function () {}
-  console.error = function () {}
-}
-/* eslint-enable */
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
@@ -42,3 +31,12 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     </HelmetProvider>
   </React.StrictMode>
 )
+
+// TODO: remove, not 12 factor
+/* eslint-disable */
+if (import.meta.env.PROD) {
+  console.log = function () {}
+  console.warn = function () {}
+  console.error = function () {}
+}
+/* eslint-enable */

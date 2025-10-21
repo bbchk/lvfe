@@ -1,4 +1,4 @@
-import { useSession, signIn, signOut } from '../../contexts/AuthContext'
+import { useSession, signIn, signOut } from '@src/contexts/AuthContext'
 
 import { useDispatch } from 'react-redux'
 
