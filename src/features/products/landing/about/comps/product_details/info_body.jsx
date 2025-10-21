@@ -1,5 +1,5 @@
 import s from './info_body.module.scss'
-import { useSession, signIn, signOut } from '../../contexts/AuthContext'
+import { useSession, signIn, signOut } from '@src/contexts/AuthContext'
 // import { useCart } from 'hooks/useCart'
 
 import {

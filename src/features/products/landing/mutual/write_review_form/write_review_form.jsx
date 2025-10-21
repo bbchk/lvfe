@@ -1,5 +1,5 @@
-import InputField from 'comps/input_fields/input_field.js'
-import TextArea from 'comps/input_fields/textarea.js'
+import InputField from 'comps/input_fields/input_field'
+import TextArea from 'comps/input_fields/textarea'
 import s from './write_review_form.module.scss'
 import { useEffect, useRef, useState } from 'react'
 import Rate from 'comps/rating/rate'

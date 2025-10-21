@@ -1,4 +1,4 @@
-import ImageFallback from 'comps/image/fallback_images'
+import ImageFallback from 'comps/image/fallback_image'
 import s from './small_card.module.scss'
 
 const Small_Card = ({ product: { images, name } }) => {

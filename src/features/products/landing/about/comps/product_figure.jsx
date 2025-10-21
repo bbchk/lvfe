@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import s from './product_figure.module.scss'
-import { Carousel, CarouselItem } from '/comps/carousel/carousel'
+import { Carousel, CarouselItem } from 'comps/carousel/carousel'
 import ImageFallback from 'comps/image/fallback_image'
 
 const ProductFigure = ({ images }) => {

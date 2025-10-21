@@ -3,7 +3,7 @@ import s from './listing.subcat_card.module.scss'
 
 import { slugify } from '@bbuukk/slugtrans/slugify'
 import { transliterate } from '@bbuukk/slugtrans/transliterate'
-import ImageFallback from 'comps/image/fallback_images'
+import ImageFallback from 'comps/image/fallback_image'
 
 const SubcategoryCard = ({ category }) => {
   const { name, imagePath } = category
