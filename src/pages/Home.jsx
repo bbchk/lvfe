@@ -1,9 +1,9 @@
-import { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Helmet } from 'react-helmet-async'
 import axios from 'axios'
 
 import { useStopLoading } from 'hooks/useStopLoading'
-// import CategoriesGallery from 'features/categories/comps/gallery'
+import CategoriesGallery from 'features/categories/comps/gallery'
 
 const Home = () => {
   const [rootCategories, setRootCategories] = useState([])
@@ -43,11 +43,10 @@ const Home = () => {
       </Helmet>
 
       <div id='main_content' className='my-5'>
+        <CategoriesGallery rootCategories={rootCategories} />
       </div>
     </>
   )
 }
 
 export default Home
-
-        // <CategoriesGallery rootCategories={rootCategories} />
