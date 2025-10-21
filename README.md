@@ -6,7 +6,7 @@ set back-end on droplet
 finish refactoring from next.js to plain react
 remove all advanced features (login, favorite goods, etc)
 
-make filtering adequate for all the categories 
+make filtering adequate for all the categories (we could do that together with Bohdana)
 make search work with fzf
 
 P2
