@@ -95,11 +95,12 @@ const ProductsListing = () => {
         <Suspense fallback={<LoadingSpinner />}>
           <SubcategoriesGallery subcategories={subcategories} />
         </Suspense>
+
+        <ProductListingBody data={data} />
       </>
     </>
   );
 };
 
-// <ProductListingBody data={data} />
 
 export default ProductsListing;

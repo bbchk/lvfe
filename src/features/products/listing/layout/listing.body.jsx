@@ -84,20 +84,10 @@ const ProductListingBody = ({
               </div>
             )}
             <div className={`${s.selected}`}>
-              <Selected productsCount={productsCount} />
             </div>
             <div className={`${s.sort_group}`}>
               <SortGroup />
             </div>
-            <div className={`${s.filters_decor_line}`}></div>
-            {!isSmallViewport && (
-              <div className={`${s.filters}`}>
-                <FiltersAccordion
-                  filters={filtersMap}
-                  minMaxPrice={minMaxPrice}
-                />
-              </div>
-            )}
 
             <div className={`${s.gallery}`}>
               <div className={`${s.products}`}>
@@ -106,7 +96,6 @@ const ProductListingBody = ({
                   activeCategory={category}
                 />
               </div>
-              <ProductsPagination numPages={numPages} activePageId={page} />
             </div>
           </div>
         </>
