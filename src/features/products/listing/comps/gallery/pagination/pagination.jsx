@@ -1,4 +1,4 @@
-import { useNavigate, useLocation } from 'react-router-dom'
+import { useNavigate, useLocation, useParams } from 'react-router-dom'
 
 import {
   KeyboardArrowLeftRounded,
@@ -16,9 +16,12 @@ const FIRST_PAGE = 1
 //todo refactoring
 function ProductsPagination({ numPages, activePageId }) {
   const dispatch = useDispatch()
-
-  const router = useRouter()
-  const { categoryPath, filtersStr } = router.query
+  const navigate = useNavigate()
+  const params = useParams()
+  
+  const categoryPath = params.categoryPath
+  const filtersStr = params.filtersStr
+  
   const getPath = (pageId) => {
     const filtersStrWithNewPageId = filtersStr.replace(
       /page=\d+/,
@@ -57,8 +60,10 @@ function ProductsPagination({ numPages, activePageId }) {
             if (isActive(pageId) || pageId == undefined) {
               event.preventDefault()
             } else {
+              event.preventDefault()
               if (onClick) onClick()
               dispatch(startLoading())
+              navigate(getPath(pageId))
             }
           }}
         >
@@ -167,3 +172,4 @@ function ProductsPagination({ numPages, activePageId }) {
 }
 
 export default ProductsPagination
+

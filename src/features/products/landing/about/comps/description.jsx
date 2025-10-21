@@ -11,8 +11,6 @@ const Description = ({ product }) => {
 
   const textRef = useRef()
 
-  const router = useRouter()
-
   const toggleExpanded = () => {
     if (!expanded) {
       textRef.current.style.maxHeight = `${textRef.current.scrollHeight}px`
@@ -60,3 +58,4 @@ const Description = ({ product }) => {
 }
 
 export default Description
+

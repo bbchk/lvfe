@@ -5,10 +5,10 @@ import { balsamiqSans } from '../App.jsx'
 import { useNavigate, useLocation } from 'react-router-dom'
 
 const Item = ({ text, component, onClick, href, children }) => {
-  const router = useRouter()
+  const location = useLocation()
 
   const isActive = (href) => {
-    return router.pathname === href
+    return location.pathname === href
   }
   return (
     <ListItem
@@ -59,3 +59,4 @@ const ListHeading = ({ text }) => {
 }
 
 export { Item, ItemButton, ItemLink, ListHeading }
+

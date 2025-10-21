@@ -1,11 +1,12 @@
 import s from './selected.module.scss'
 import { useSelector, useDispatch } from 'react-redux'
 import { deleteAllFilters } from 'store/slices/filters.slice'
-import { useNavigate, useLocation } from 'react-router-dom'
+import { useNavigate, useLocation, useParams } from 'react-router-dom'
 import { startLoading } from 'store/slices/global_comps/global_comps.slice.js'
 
 const Selected = ({ productsCount }) => {
-  const router = useRouter()
+  const navigate = useNavigate()
+  const params = useParams()
   const dispatch = useDispatch()
 
   const { filters: activeFilters } = useSelector((state) => state.filters)
@@ -21,7 +22,7 @@ const Selected = ({ productsCount }) => {
             onClick={() => {
               dispatch(startLoading())
               dispatch(deleteAllFilters())
-              router.push(`/products/${router.query.categoryPath}/page=1`)
+              navigate(`/products/${params.categoryPath}/page=1`)
             }}
             aria-label='Скасувати всі фільтри товарів'
           >
@@ -34,3 +35,4 @@ const Selected = ({ productsCount }) => {
 }
 
 export default Selected
+

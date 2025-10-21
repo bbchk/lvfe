@@ -1,7 +1,7 @@
 import SubcategoryCard from './card'
 
 import s from './gallery.module.scss'
-import TabIndexButton from 'comps/accessibility/indexTabButton.js'
+import TabIndexButton from 'comps/accessibility/indexTabButton'
 
 const SubcategoriesGallery = ({ subcategories }) => {
   return (

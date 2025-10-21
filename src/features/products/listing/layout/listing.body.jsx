@@ -7,7 +7,7 @@ import React from 'react'
 
 import LoadingSpinner from 'comps/loading/spinner'
 
-const NoProductYet = React.lazy(() =>() => import('comps/warnings/no_products.js'), {
+const NoProductYet = React.lazy(() =>() => import('comps/warnings/no_products'), {
   loading: () => <LoadingSpinner />,
   ssr: false,
 })
@@ -23,19 +23,19 @@ const FiltersAccordion = React.lazy(() =>
 const FiltersOffcanvas = React.lazy(() =>
   () =>
     import(
-      'features/products/listing/comps/filter/filiters_offcanvas/filters_offcanvas.js'
+      'features/products/listing/comps/filter/filiters_offcanvas/filters_offcanvas'
     ),
   { loading: () => <LoadingSpinner /> },
 )
 
 const ProductsPagination = React.lazy(() =>
   () =>
-    import('features/products/listing/comps/gallery/pagination/pagination.js'),
+    import('features/products/listing/comps/gallery/pagination/pagination'),
   { ssr: false },
 )
 
 const Selected = React.lazy(() =>
-  () => import('features/products/listing/comps/filter/selected.js'),
+  () => import('features/products/listing/comps/filter/selected'),
   { ssr: false },
 )
 
@@ -47,8 +47,8 @@ const FiltersOffcanvasToggler = React.lazy(() =>
   { ssr: true },
 )
 
-import SortGroup from 'features/products/listing/comps/filter/sort-group.js'
-import ProductGallery from 'features/products/listing/comps/gallery/gallery.js'
+import SortGroup from 'features/products/listing/comps/filter/sort-group'
+import ProductGallery from 'features/products/listing/comps/gallery/gallery'
 
 const ProductListingBody = ({
   data: {

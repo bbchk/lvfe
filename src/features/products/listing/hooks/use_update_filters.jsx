@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { useNavigate, useLocation } from 'react-router-dom'
+import { useNavigate, useLocation, useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { setFilters } from 'store/slices/filters.slice'
 
@@ -13,8 +13,15 @@ const genFiltersStr = (filters) => {
 }
 
 export const useUpdateFilters = () => {
-  const router = useRouter()
-  const { categoryPath, filtersStr } = router.query
+  const navigate = useNavigate()
+  const location = useLocation()
+  const params = useParams()
+  
+  // Extract categoryPath from URL params
+  const categoryPath = params.categoryPath
+  
+  // Extract filtersStr from URL params (assuming it's in the pathname)
+  const filtersStr = params.filtersStr
 
   const { filters } = useSelector((state) => state.filters)
 
@@ -23,11 +30,12 @@ export const useUpdateFilters = () => {
 
     if (
       Object.keys(filters).length != 0 &&
-      newFiltersStr !== router.query.filtersStr
+      newFiltersStr !== filtersStr
     ) {
       const filtersStrPageDefault = newFiltersStr.replace(/page=\d+/, 'page=1')
-      router.push(`/products/${categoryPath}/${filtersStrPageDefault}`)
+      navigate(`/products/${categoryPath}/${filtersStrPageDefault}`)
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [filters])
 }
+

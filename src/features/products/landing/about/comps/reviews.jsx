@@ -23,17 +23,17 @@ const Reviews = ({ product }) => {
   const MAX_REVIEWS_ON_ABOUT_PAGE = 3
   const dispatch = useDispatch()
 
-  const router = useRouter()
+  const navigate = useNavigate()
+  const location = useLocation()
+  
   const handleNavigation = (e) => {
-    const productPathNoActiveTab = router.asPath
+    const productPathNoActiveTab = location.pathname
       .split('/')
       .slice(0, -1)
       .join('/')
 
     e.preventDefault()
-    router.push(productPathNoActiveTab + '/reviews', undefined, {
-      shallow: true,
-    })
+    navigate(productPathNoActiveTab + '/reviews')
   }
 
   const amountOfReviews = reviews?.length
@@ -92,3 +92,4 @@ const Reviews = ({ product }) => {
 }
 
 export default Reviews
+

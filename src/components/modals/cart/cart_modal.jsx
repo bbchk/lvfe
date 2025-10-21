@@ -24,7 +24,7 @@ import { useNavigate, useLocation } from 'react-router-dom'
 import { balsamiqSans } from '#src/App.jsx'
 
 const CartModal = () => {
-  const router = useRouter()
+  const navigate = useNavigate()
   const dispatch = useDispatch()
   const { cartModalOpen } = useSelector((state) => state.modals)
 
@@ -50,7 +50,7 @@ const CartModal = () => {
         headers: authHeader,
       })
 
-      router.push(response.data.url)
+      navigate(response.data.url)
     } catch (e) {
       console.log(e)
     }
@@ -126,3 +126,4 @@ const CartModal = () => {
 }
 
 export default CartModal
+

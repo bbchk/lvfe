@@ -1,13 +1,13 @@
 import axios from 'axios'
 import s from './recs_carousel.module.scss'
 import ListingProductCard from 'features/products/listing/comps/gallery/card/listing_card'
-import { useNavigate, useLocation } from 'react-router-dom'
+import { useNavigate, useLocation, useParams } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 
 //do we need web worker for this?
 const RecsCarousel = () => {
-  const router = useRouter()
-  const { productId } = router.query
+  const params = useParams()
+  const productId = params.productId
 
   const [recs, setRecs] = useState([])
 
@@ -60,3 +60,4 @@ const RecsCarousel = () => {
 }
 
 export default RecsCarousel
+

@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import { setFilters } from 'store/slices/filters.slice'
 import { useDispatch } from 'react-redux'
-import { useNavigate, useLocation } from 'react-router-dom'
+import { useNavigate, useLocation, useParams } from 'react-router-dom'
 
 const getFilterMapFromStr = (filtersStr) => {
   let filters = {}
@@ -16,9 +16,10 @@ const getFilterMapFromStr = (filtersStr) => {
 
 export const useDispatchInitialFilters = () => {
   const dispatch = useDispatch()
+  const location = useLocation()
+  const params = useParams()
 
-  const router = useRouter()
-  const { filtersStr } = router.query
+  const filtersStr = params.filtersStr || new URLSearchParams(location.search).get('filtersStr')
 
   useEffect(() => {
     const filtersMap = getFilterMapFromStr(filtersStr)
@@ -29,3 +30,4 @@ export const useDispatchInitialFilters = () => {
     }
   }, [])
 }
+

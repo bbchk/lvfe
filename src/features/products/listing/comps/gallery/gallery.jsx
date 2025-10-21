@@ -2,16 +2,9 @@ import ListingProductCard from './card/listing_card'
 
 import s from './gallery.module.scss'
 
-import {
-  AutoSizer,
-  InfiniteLoader,
-  WindowScroller,
-  Grid,
-} from 'react-virtualized'
-
 import { useWishList } from 'hooks/useWishList'
-import { useState } from 'react'
-import TabIndexButton from 'comps/accessibility/indexTabButton.js'
+import { useState, useEffect } from 'react'
+import TabIndexButton from 'comps/accessibility/indexTabButton'
 import { useCart } from 'hooks/use_cart'
 
 import LoadingSpinner from 'comps/loading/spinner'
@@ -28,59 +21,24 @@ const ProductGallery = ({
 
   const [columnsNumber, setColumnsNumber] = useState(4)
 
-  const cellRenderer = ({
-    isVisible,
-    columnIndex,
-    rowIndex,
-    key,
-    style,
-    columnCount,
-  }) => {
-    const index = rowIndex * columnCount + columnIndex
-
-    if (!isVisible) {
-      return (
-        <div role='row' key={key}>
-          <div role='gridcell'>
-            <TabIndexButton
-              aria-label={`Товар завантажується. Зачекайте будь ласка`}
-              style={{ ...style }}
-            >
-              <LoadingSpinner />
-            </TabIndexButton>
-          </div>
-        </div>
-      )
+  // Update columns based on window width
+  useEffect(() => {
+    const updateColumns = () => {
+      const width = window.innerWidth
+      let columnCount = Math.floor(width / MIN_COLUMN_WIDTH)
+      columnCount = columnCount < MIN_COLUMNS ? MIN_COLUMNS : columnCount
+      setColumnsNumber(columnCount)
     }
 
-    const product = products[index]
-    if (!product) {
-      return null
-    }
+    // Set initial columns
+    updateColumns()
 
-    product.isLiked = wshl.includes(product._id)
-    product.like = like
+    // Add resize listener
+    window.addEventListener('resize', updateColumns)
 
-    product.inCart = cart.items.some((p) => p._id === product._id)
-    product.add = add
-
-    return (
-      <div role='row' key={key}>
-        <div role='gridcell'>
-          <TabIndexButton
-            aria-label={`${product.name} за ціною ${product.price} взаємодіяти з`}
-            style={style}
-            id={`product-card-${index}`}
-          >
-            <ListingProductCard
-              product={product}
-              priority={index < columnCount}
-            />
-          </TabIndexButton>
-        </div>
-      </div>
-    )
-  }
+    // Cleanup
+    return () => window.removeEventListener('resize', updateColumns)
+  }, [])
 
   return (
     <main
@@ -88,67 +46,35 @@ const ProductGallery = ({
       className={`${s.g}`}
       style={{
         '--children-number': Math.ceil(products.length / columnsNumber),
+        display: 'grid',
+        gridTemplateColumns: `repeat(${columnsNumber}, 1fr)`,
+        gap: '1rem',
+        padding: '1rem'
       }}
     >
-      <InfiniteLoader
-        isRowLoaded={({ index }) => !!products[index]}
-        loadMoreRows={({ startIndex, stopIndex }) => {
-          // Load more products when the user scrolls
-        }}
-        rowCount={products.length / columnsNumber}
-      >
-        {({ onRowsRendered, registerChild }) => (
-          <WindowScroller>
-            {({ height, isScrolling, onChildScroll, scrollTop }) => (
-              <AutoSizer disableHeight>
-                {({ width }) => {
-                  let columnCount = Math.floor(width / MIN_COLUMN_WIDTH)
-                  columnCount =
-                    columnCount < MIN_COLUMNS ? MIN_COLUMNS : columnCount
+      {products.map((product, index) => {
+        // Add wishlist and cart properties to product
+        const enhancedProduct = {
+          ...product,
+          isLiked: wshl.includes(product._id),
+          like: like,
+          inCart: cart.items.some((p) => p._id === product._id),
+          add: add
+        }
 
-                  setColumnsNumber(columnCount)
-                  const rowCount = Math.ceil(products.length / columnsNumber)
-
-                  return (
-                    <Grid
-                      autoHeight
-                      cellRenderer={({
-                        isVisible,
-                        columnIndex,
-                        rowIndex,
-                        key,
-                        style,
-                      }) => {
-                        return cellRenderer({
-                          isVisible,
-                          columnIndex,
-                          rowIndex,
-                          key,
-                          style,
-                          columnCount,
-                        })
-                      }}
-                      columnCount={columnCount}
-                      columnWidth={width / columnCount}
-                      height={height}
-                      isScrolling={isScrolling}
-                      onScroll={onChildScroll}
-                      overscanColumnCount={0}
-                      overscanRowCount={1}
-                      rowCount={rowCount}
-                      rowHeight={400}
-                      scrollTop={scrollTop}
-                      width={width}
-                    />
-                  )
-                }}
-              </AutoSizer>
-            )}
-          </WindowScroller>
-        )}
-      </InfiniteLoader>
+        return (
+          <div role='gridcell' key={product._id || index}>
+              <ListingProductCard
+                product={enhancedProduct}
+                priority={index < columnsNumber}
+              />
+          </div>
+        )
+      })}
     </main>
   )
 }
 
 export default ProductGallery
+
+

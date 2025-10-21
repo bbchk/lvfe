@@ -11,7 +11,6 @@ const Logo = () => {
           aria-label='Перейти на головну сторінку'
           width={50}
           height={50}
-          priority
         />
         <span>Живий світ</span>
       </a>

@@ -9,7 +9,7 @@ import {
   Typography,
 } from '@mui/material'
 
-import { useNavigate, useLocation } from 'react-router-dom'
+import { useNavigate, useLocation, useParams } from 'react-router-dom'
 
 import { useDispatch, useSelector } from 'react-redux'
 
@@ -26,7 +26,12 @@ import { balsamiqSans } from '#src/App.jsx'
 
 const FiltersOffcanvas = ({ id, filters, minMaxPrice, productsCount }) => {
   const dispatch = useDispatch()
-  const router = useRouter()
+  const navigate = useNavigate()
+  const params = useParams()
+  
+  const categoryPath = params.categoryPath
+  const filtersStr = params.filtersStr
+  
   const { filters: activeFilters } = useSelector((state) => state.filters)
   const { filterOffcanvasOpen } = useSelector((state) => state.modals)
 
@@ -68,7 +73,7 @@ const FiltersOffcanvas = ({ id, filters, minMaxPrice, productsCount }) => {
               onClick={() => {
                 dispatch(startLoading())
                 dispatch(deleteAllFilters())
-                router.push(`/products/${router.query.categoryPath}/page=1`)
+                navigate(`/products/${categoryPath}/page=1`)
               }}
             >
               Скасувати усі фільтри
@@ -91,9 +96,7 @@ const FiltersOffcanvas = ({ id, filters, minMaxPrice, productsCount }) => {
                 type='button'
                 onClick={() => {
                   dispatch(toggle(FILTER_OFFCANVAS))
-                  router.push(
-                    `/products/${router.query.categoryPath}/${router.query.filtersStr}`,
-                  )
+                  navigate(`/products/${categoryPath}/${filtersStr}`)
                 }}
               >
                 Показати
@@ -117,3 +120,4 @@ const FiltersOffcanvas = ({ id, filters, minMaxPrice, productsCount }) => {
 }
 
 export default FiltersOffcanvas
+

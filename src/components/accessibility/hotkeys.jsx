@@ -20,7 +20,7 @@ const {
 import useFocusOn from 'hooks/use_focus_on'
 
 const CustomHotkeys = () => {
-  const router = useRouter()
+  const navigate = useNavigate()
   const dispatch = useDispatch()
 
   function toggle(compName) {
@@ -28,7 +28,7 @@ const CustomHotkeys = () => {
   }
 
   function navigateTo(path) {
-    router.push(path)
+    navigate(path)
   }
 
   const focusOn = useFocusOn()
@@ -53,9 +53,7 @@ const CustomHotkeys = () => {
   useHotkeys('ctrl+m, сtrl+ь', () => focusOn('main_content'))
 
   //user
-  useHotkeys('ctrl+alt+q, ctrl+alt+й', () => signOut({ callbackUrl: '/' }), [
-    dispatch,
-  ])
+  useHotkeys('ctrl+alt+q, ctrl+alt+й', () => signOut({ callbackUrl: '/' }), [    dispatch,  ])
 
   //todo for landing page
   // Shopping Cart Shortcuts: These can help users manage their shopping cart.
@@ -72,7 +70,6 @@ const CustomHotkeys = () => {
   // ctrl + b: Bookmark a product
   // ctrl + shift + b: View bookmarked produc
 
-  useState()
   const [text, setText] = useState('_')
   function handleFocus(event) {
     setText(
@@ -82,15 +79,5 @@ const CustomHotkeys = () => {
 
   return (
     <button
-      className={`sr_only visible_on_focus`}
-      onClick={() => toggle(HOTKEYS_MODAL)}
-      onFocus={handleFocus}
-      aria-live='assertive'
-      aria-label={text}
-    >
-      {text}
-    </button>
-  )
-}
+      className
 
-export default CustomHotkeys

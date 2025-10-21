@@ -6,12 +6,12 @@ import { ArrowCircleLeftRounded, SearchOffRounded } from '@mui/icons-material'
 
 const NoProductYet = () => {
   const dispatch = useDispatch()
-  const router = useRouter()
+  const navigate = useNavigate()
 
   const goBack = (e) => {
     e.preventDefault()
     dispatch(startLoading())
-    router.back()
+    navigate(-1)
   }
 
   return (
@@ -40,3 +40,4 @@ const NoProductYet = () => {
 }
 
 export default NoProductYet
+

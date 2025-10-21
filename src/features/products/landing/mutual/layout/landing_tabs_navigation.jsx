@@ -1,12 +1,15 @@
-import { useNavigate, useLocation } from 'react-router-dom'
+import { useNavigate, useLocation, useParams } from 'react-router-dom'
 import s from './landing_tabs_navigation.module.scss'
 
 import { slugify } from '@bbuukk/slugtrans/slugify'
 import { transliterate } from '@bbuukk/slugtrans/transliterate'
 
 const TabsNavigation = ({ activeTab }) => {
-  const router = useRouter()
-  const { productSlug, productId } = router.query
+  const navigate = useNavigate()
+  const params = useParams()
+  
+  const productSlug = params.productSlug
+  const productId = params.productId
 
   const productUrl = (activeTab) =>
     `/product/${productSlug}/${productId}/${activeTab}`
@@ -14,7 +17,7 @@ const TabsNavigation = ({ activeTab }) => {
   const TabLink = ({ tabName, label }) => {
     const handleClick = (e) => {
       e.preventDefault()
-      router.push(productUrl(tabName), undefined, { shallow: true })
+      navigate(productUrl(tabName))
     }
 
     return (
@@ -49,3 +52,4 @@ const TabsNavigation = ({ activeTab }) => {
 }
 
 export default TabsNavigation
+

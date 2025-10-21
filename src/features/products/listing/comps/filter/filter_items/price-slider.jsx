@@ -3,14 +3,15 @@ import React, { use, useEffect, useState } from 'react'
 import s from './price-slider.module.scss'
 import { useDispatch, useSelector } from 'react-redux'
 import { setFilter } from 'store/slices/filters.slice'
-import { useNavigate, useLocation } from 'react-router-dom'
+import { useNavigate, useLocation, useParams } from 'react-router-dom'
 import { startLoading } from 'store/slices/global_comps/global_comps.slice.js'
 
 //todo inconsistent currentMinMax, it changes on page refresh, when set on some points lower
 const PriceSlider = ({ minMax }) => {
   const MIN_DISTANCE = 10
 
-  const { filtersStr } = useRouter().query
+  const params = useParams()
+  const filtersStr = params.filtersStr // Note: This variable is extracted but not used in the component
   const dispatch = useDispatch()
 
   const [minMaxPrice, setMinMaxPrice] = useState([minMax[0], minMax[1]])
@@ -129,3 +130,4 @@ const PriceSlider = ({ minMax }) => {
 }
 
 export default PriceSlider
+
