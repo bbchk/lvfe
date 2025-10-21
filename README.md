@@ -1,5 +1,28 @@
 # Live React App
 
+P1
+set back-end on droplet
+
+finish refactoring from next.js to plain react
+remove all advanced features (login, favorite goods, etc)
+
+make filtering adequate for all the categories 
+make search work with fzf
+
+P2
+correct styles on product listing page
+ensure mobile responsivenses
+redesign footer
+
+
+
+
+
+
+
+
+
+
 This is the React version of the Live web-application, refactored from Next.js to a standalone React SPA.
 
 ## Features
