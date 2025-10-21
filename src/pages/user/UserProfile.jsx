@@ -1,7 +1,7 @@
 import React from 'react'
 import { Helmet } from 'react-helmet-async'
 
-import PersonalData from 'features/user/personal_data/personal_data.js'
+import PersonalData from 'features/user/personal_data/personal_data'
 import TabsLayout from 'comps/layout/tabs/tabs.layout'
 import Tabs from 'features/user/comps/user.tabs'
 

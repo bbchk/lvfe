@@ -8,7 +8,7 @@ import {
 } from 'store/slices/global_comps/global_comps.slice'
 const { SIGN_IN_MODAL, SIGN_UP_MODAL } = GLOBAL_COMPS
 
-import { balsamiqSans } from 'pages/_app'
+import { balsamiqSans } from '#src/App.jsx'
 
 import s from './auth_popover.module.scss'
 

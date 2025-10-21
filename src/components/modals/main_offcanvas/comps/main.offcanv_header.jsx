@@ -1,5 +1,5 @@
 
-import { pacifico } from 'pages/_app'
+import { pacifico } from '#src/App.jsx'
 
 import s from './main.offcanv_header.module.scss'
 

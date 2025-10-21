@@ -4,7 +4,7 @@ import Logo from './comps/logo'
 import OffcanvasToggler from './comps/offcanvas/main_offcanvas.toggler'
 import s from './header.module.scss'
 import { useSelector } from 'react-redux'
-import { balsamiqSans } from 'pages/_app'
+import { balsamiqSans } from '#src/App.jsx'
 
 const Header = () => {
   const { loading } = useSelector((state) => state.modals)

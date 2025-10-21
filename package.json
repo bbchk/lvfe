@@ -1,12 +1,12 @@
 {
-  "name": "live-react-app",
+  "name": "live-world",
   "version": "0.1.0",
   "description": "React version of the Live web-application",
   "author": "Bohdan Buchok bohdanbuchok@gmail.com",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/bbuukk/live"
+    "url": "https://github.com/bbchk/live"
   },
   "private": true,
   "scripts": {

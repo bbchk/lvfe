@@ -3,7 +3,7 @@ import { Helmet } from 'react-helmet-async'
 import { useParams } from 'react-router-dom'
 import axios from 'axios'
 
-import LoadingSpinner from 'comps/loading/spinner.js'
+import LoadingSpinner from 'comps/loading/spinner'
 import { useStopLoading } from 'hooks/useStopLoading'
 import { useUpdateFilters } from 'features/products/listing/hooks/use_update_filters'
 import { useDispatchInitialFilters } from 'features/products/listing/hooks/use_dispatch_initial_filters.js'

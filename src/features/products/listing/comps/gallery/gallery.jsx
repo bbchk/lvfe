@@ -9,12 +9,12 @@ import {
   Grid,
 } from 'react-virtualized'
 
-import { useWishList } from 'hooks/useWishList.js'
+import { useWishList } from 'hooks/useWishList'
 import { useState } from 'react'
 import TabIndexButton from 'comps/accessibility/indexTabButton.js'
-import { useCart } from 'hooks/use_cart.js'
+import { useCart } from 'hooks/use_cart'
 
-import LoadingSpinner from 'comps/loading/spinner.js'
+import LoadingSpinner from 'comps/loading/spinner'
 
 const MIN_COLUMNS = 2 // Minimum number of columns
 const MIN_COLUMN_WIDTH = 250 // Minimum width for a column

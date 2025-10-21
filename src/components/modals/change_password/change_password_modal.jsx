@@ -12,9 +12,9 @@ const { CHANGE_PASSWORD_MODAL } = GLOBAL_COMPS
 
 import PasswordInputField from 'comps/input_fields/password_input_field'
 import { useEffect, useState } from 'react'
-import { balsamiqSans } from 'pages/_app'
+import { balsamiqSans } from '#src/App.jsx'
 
-import useChangePassword from 'features/user/hooks/useChangePasword.js'
+import useChangePassword from 'features/user/hooks/useChangePasword'
 
 import {
   Dialog,

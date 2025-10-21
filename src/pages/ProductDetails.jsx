@@ -5,8 +5,8 @@ import axios from 'axios'
 
 import { stripHtmlTags } from 'utils/stripHtmlTags'
 import { useStopLoading } from 'hooks/useStopLoading'
-import LandingHeader from 'features/products/landing/mutual/layout/landing_header.js'
-import LoadingSpinner from 'comps/loading/spinner.js'
+import LandingHeader from 'features/products/landing/mutual/layout/landing_header'
+import LoadingSpinner from 'comps/loading/spinner'
 
 // Lazy load components
 const LandingProductAboutPage = React.lazy(() => 

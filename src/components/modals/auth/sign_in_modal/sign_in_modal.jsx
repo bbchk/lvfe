@@ -10,18 +10,18 @@ import {
   useTheme,
 } from '@mui/material'
 import { useDispatch, useSelector } from 'react-redux'
-import { useSession, signIn, signOut } from '../../contexts/AuthContext'
+import { useSession, signIn, signOut } from '#src/contexts/AuthContext'
 
 import SignInFormByCredentials from './sign_in_form_by_credentials'
 import SignFormByServices from '../sign_form_by_services'
 
-import CustomAlert from 'comps/warnings/alert.js'
+import CustomAlert from '#src/components/warnings/alert'
 
 import {
   toggle as tg,
   GLOBAL_COMPS,
 } from 'store/slices/global_comps/global_comps.slice'
-import { balsamiqSans } from '../App.jsx'
+import { balsamiqSans } from '#src/App'
 
 const { SIGN_IN_MODAL, SIGN_UP_MODAL } = GLOBAL_COMPS
 

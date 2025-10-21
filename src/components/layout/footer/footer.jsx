@@ -10,7 +10,7 @@ import AboutUs from './comps/about_us'
 import WorkHours from './comps/work_hours'
 import Contacts from './comps/contacts'
 
-import LoadingSpinner from 'comps/loading/spinner.js'
+import LoadingSpinner from 'comps/loading/spinner'
 const Location = React.lazy(() => import('./comps/location'))
 
 const Footer = () => {

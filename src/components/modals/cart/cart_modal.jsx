@@ -18,10 +18,10 @@ const { CART_MODAL, SIGN_IN_MODAL } = GLOBAL_COMPS
 import CartItem from './cart_item/cart_item'
 
 import { useCart } from 'hooks/use_cart.js'
-import { useSession, signIn, signOut } from '../../contexts/AuthContext'
+import { useSession, signIn, signOut } from '#src/contexts/AuthContext'
 import axios from 'axios'
 import { useNavigate, useLocation } from 'react-router-dom'
-import { balsamiqSans } from '../App.jsx'
+import { balsamiqSans } from '#src/App.jsx'
 
 const CartModal = () => {
   const router = useRouter()

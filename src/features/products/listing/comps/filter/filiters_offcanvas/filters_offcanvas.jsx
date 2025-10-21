@@ -22,7 +22,7 @@ import {
   GLOBAL_COMPS,
 } from 'store/slices/global_comps/global_comps.slice'
 const { FILTER_OFFCANVAS } = GLOBAL_COMPS
-import { balsamiqSans } from 'pages/_app'
+import { balsamiqSans } from '#src/App.jsx'
 
 const FiltersOffcanvas = ({ id, filters, minMaxPrice, productsCount }) => {
   const dispatch = useDispatch()

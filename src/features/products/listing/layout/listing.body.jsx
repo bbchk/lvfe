@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux'
 
 import React from 'react'
 
-import LoadingSpinner from 'comps/loading/spinner.js'
+import LoadingSpinner from 'comps/loading/spinner'
 
 const NoProductYet = React.lazy(() =>() => import('comps/warnings/no_products.js'), {
   loading: () => <LoadingSpinner />,

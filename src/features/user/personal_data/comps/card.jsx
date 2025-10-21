@@ -2,7 +2,7 @@ import s from './card.module.scss'
 
 import { Card as MuiCard, CardContent } from '@mui/material'
 
-import { balsamiqSans } from '../App.jsx'
+import { balsamiqSans } from '#src/App.jsx'
 
 const Card = ({ Header, Body }) => {
   return (

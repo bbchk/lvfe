@@ -1,7 +1,7 @@
 import React from 'react'
 import { Helmet } from 'react-helmet-async'
 
-import WishList from 'features/user/wish_list/wish_list.js'
+// import WishList from 'features/user/wish_list/wish_list'
 import TabsLayout from 'comps/layout/tabs/tabs.layout'
 import Tabs from 'features/user/comps/user.tabs'
 
@@ -16,7 +16,7 @@ const WishListPage = () => {
         />
       </Helmet>
 
-      <TabsLayout Tabs={Tabs} Content={WishList} />
+      <TabsLayout Tabs={Tabs} Content={<></>} />
     </>
   )
 }

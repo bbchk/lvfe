@@ -5,18 +5,22 @@ import StarRating from "comps/rating/star_rating";
 const MainInfoHeader = ({
   product: { name, reviews = [], starRating = 0, code = "000000" },
 }) => {
-  const router = useRouter();
-  const productPathNoActiveTab = router.asPath
+  // --- Start of Fix ---
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  // Replicate the original logic using react-router-dom's location hook
+  const productPathNoActiveTab = location.pathname
     .split("/")
     .slice(0, -1)
     .join("/");
 
   const handleNavigation = (e) => {
     e.preventDefault();
-    router.push(productPathNoActiveTab + "/reviews", undefined, {
-      shallow: true,
-    });
+    // Use the navigate function to change the route
+    navigate(productPathNoActiveTab + "/reviews");
   };
+  // --- End of Fix ---
 
   return (
     <header className={`${s.header}`} id="main_content">

@@ -8,9 +8,10 @@ import {
 } from 'store/slices/global_comps/global_comps.slice'
 const { HOTKEYS_MODAL } = GLOBAL_COMPS
 
-import { balsamiqSans } from 'pages/_app'
+import { balsamiqSans } from '#src/App.jsx'
+
 import { useId } from 'react'
-import CustomAlert from 'comps/warnings/alert.js'
+import CustomAlert from 'comps/warnings/alert'
 
 import {
   Dialog,

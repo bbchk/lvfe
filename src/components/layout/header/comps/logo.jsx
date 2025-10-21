@@ -1,4 +1,4 @@
-import { pacifico } from 'pages/_app'
+import { balsamiqSans } from '#src/App.jsx'
 
 import hs from '../header.module.scss'
 

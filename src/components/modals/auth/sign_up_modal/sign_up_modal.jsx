@@ -12,7 +12,7 @@ import {
 } from 'store/slices/global_comps/global_comps.slice'
 const { SIGN_IN_MODAL, SIGN_UP_MODAL } = GLOBAL_COMPS
 
-import { useSession, signIn, signOut } from '../../contexts/AuthContext.jsx'
+import { useSession, signIn, signOut } from '../../../../contexts/AuthContext'
 
 import CustomAlert from 'comps/warnings/alert'
 
@@ -23,7 +23,7 @@ import {
   useMediaQuery,
   useTheme,
 } from '@mui/material'
-import { balsamiqSans } from '../App.jsx'
+import { balsamiqSans } from '../../../../App.jsx'
 
 const SignUpModal = () => {
   const dispatch = useDispatch()

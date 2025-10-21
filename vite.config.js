@@ -1,4 +1,5 @@
 import { defineConfig } from 'vite'
+
 import react from '@vitejs/plugin-react'
 import path from 'path'
 
@@ -24,12 +25,24 @@ export default defineConfig({
     }
   },
   server: {
+    host: '0.0.0.0',
     port: 3000,
     open: true
   },
+  // root: 'src',
+  // publicDir: resolve(__dirname, './assets/public'),
+  // envDir: __dirname,
+  // plugins: [Inspect()],
+  base: '/',
   build: {
-    outDir: 'dist',
-    sourcemap: true
+    outDir: resolve(__dirname, './dist'),
+    sourcemap: true,
+    // emptyOutDir: true
+    minify: true,
+  },
+  esbuild: {
+    // minify: true,
+    sourcemap: true,
   },
   define: {
     'process.env': process.env
