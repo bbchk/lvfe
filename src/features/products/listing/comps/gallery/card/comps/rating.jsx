@@ -1,4 +1,3 @@
-import Link from 'next/link'
 import s from './rating.module.scss'
 import lcs from '../listing_card.module.scss'
 import StarRating from 'comps/rating/star_rating'
@@ -11,7 +10,7 @@ import { ChatRounded } from '@mui/icons-material'
 const ProductRating = ({ product: { starRating, reviews }, productUrl }) => {
   return (
     <section className={` ${lcs.rating}`}>
-      <Link
+      <a
         aria-label='Перейти до оцінок та відгуків товару'
         className={`${s.rating}`}
         href={productUrl('characteristics')}
@@ -20,7 +19,7 @@ const ProductRating = ({ product: { starRating, reviews }, productUrl }) => {
         <StarRating rating={starRating} />
         <ChatRounded className={`${s.chat_icon}`} />
         {/* <p>{reviews.length}</p> */}
-      </Link>
+      </a>
     </section>
   )
 }

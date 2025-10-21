@@ -1,5 +1,4 @@
 import s from './no_products.module.scss'
-import Link from 'next/link'
 import { useDispatch } from 'react-redux'
 import { useNavigate, useLocation } from 'react-router-dom'
 import { startLoading } from 'store/slices/global_comps/global_comps.slice'
@@ -27,7 +26,7 @@ const NoProductYet = () => {
         Ми постійно оновлюємо наш асортимент, тому, будь ласка, поверніться
         пізніше та спробуйте ще раз 🥺
       </p>
-      <Link
+      <a
         href={'#'}
         onClick={goBack}
         className='link_primary'
@@ -35,7 +34,7 @@ const NoProductYet = () => {
       >
         <ArrowCircleLeftRounded />
         <p>Повернутись на попередню сторінку</p>
-      </Link>
+      </a>
     </article>
   )
 }

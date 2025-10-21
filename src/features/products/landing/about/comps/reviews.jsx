@@ -8,8 +8,6 @@ import {
   KeyboardArrowDownRounded,
 } from '@mui/icons-material'
 
-import Link from 'next/link'
-
 import { useDispatch } from 'react-redux'
 
 import {
@@ -82,10 +80,10 @@ const Reviews = ({ product }) => {
         </div>
         <footer className={`${s.footer}`}>
           {amountOfReviews > 0 && (
-            <Link href='#' onClick={handleNavigation}>
+            <a href='#' onClick={handleNavigation}>
               <p>Подивитись усі відгуки на товар</p>
               <KeyboardArrowUpRounded />
-            </Link>
+            </a>
           )}
         </footer>
       </>

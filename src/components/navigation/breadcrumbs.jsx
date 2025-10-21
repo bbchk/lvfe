@@ -1,5 +1,4 @@
 import s from './breadcrumbs.module.scss'
-import Link from 'next/link'
 import { slugify } from '@bbuukk/slugtrans/slugify'
 import { transliterate } from '@bbuukk/slugtrans/transliterate'
 import { useSelector, useDispatch } from 'react-redux'
@@ -36,10 +35,10 @@ const Breadcrumbs = ({ category }) => {
       >
         <ol className='breadcrumb'>
           <li className={`breadcrumb-item ${category ? '' : s.home_active}`}>
-            <Link href='/' aria-label='Повернутись до головної сторінки'>
+            <a href='/' aria-label='Повернутись до головної сторінки'>
               <CottageRounded />
               Головна
-            </Link>
+            </a>
           </li>
 
           {allCategories &&
@@ -62,13 +61,13 @@ const Breadcrumbs = ({ category }) => {
                   }`}
                   key={pathPart}
                 >
-                  <Link
+                  <a
                     aria-label={`${isActive ? 'Поточна категорія ' : `Повернутись до сторінки категорії ${clickedCategoryPath}`}  `}
                     href={`/products/${categoryPathSlug}/page=1`}
                     onClick={handleNavigate}
                   >
                     {pathPart}
-                  </Link>
+                  </a>
                 </li>
               )
             })}

@@ -7,8 +7,6 @@ import {
   KeyboardDoubleArrowRightRounded,
 } from '@mui/icons-material'
 
-import Link from 'next/link'
-
 import s from './pagination.module.scss'
 import { startLoading } from 'store/slices/global_comps/global_comps.slice'
 import { useDispatch } from 'react-redux'
@@ -41,7 +39,7 @@ function ProductsPagination({ numPages, activePageId }) {
   }) => {
     return (
       <li className={`${s.item}`}>
-        <Link
+        <a
           className={`${isActive(pageId) ? s.active : ''} ${
             disabled ? s.disabled : ''
           }`}
@@ -65,7 +63,7 @@ function ProductsPagination({ numPages, activePageId }) {
           }}
         >
           {children}
-        </Link>
+        </a>
       </li>
     )
   }

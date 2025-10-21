@@ -1,4 +1,3 @@
-import Link from 'next/link'
 
 import s from './card.module.scss'
 
@@ -14,7 +13,7 @@ const SubcategoryCard = ({ category }) => {
   )}/page=1`
 
   return (
-    <Link href={categoryPathSlug} as={categoryPathSlug} className={`${s.card}`}>
+    <a href={categoryPathSlug} as={categoryPathSlug} className={`${s.card}`}>
       <imgFallback
         src={imagePath}
         fallbackSrc={'/assets/goods_placeholder.svg'}
@@ -27,7 +26,7 @@ const SubcategoryCard = ({ category }) => {
       <div>
         <p> {name}</p>
       </div>
-    </Link>
+    </a>
   )
 }
 

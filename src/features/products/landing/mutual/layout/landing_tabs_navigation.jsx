@@ -1,4 +1,3 @@
-import Link from 'next/link'
 import { useNavigate, useLocation } from 'react-router-dom'
 import s from './landing_tabs_navigation.module.scss'
 
@@ -20,7 +19,7 @@ const TabsNavigation = ({ activeTab }) => {
 
     return (
       <li className={`nav-item ${s.link_container}`}>
-        <Link
+        <a
           href={''}
           className={`nav-link ${s.link}  ${
             activeTab === tabName ? s.active : ''
@@ -29,7 +28,7 @@ const TabsNavigation = ({ activeTab }) => {
           onClick={handleClick}
         >
           {label}
-        </Link>
+        </a>
       </li>
     )
   }

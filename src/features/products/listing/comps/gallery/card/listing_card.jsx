@@ -1,4 +1,3 @@
-import Link from 'next/link'
 import s from './listing_card.module.scss'
 
 import { slugify } from '@bbuukk/slugtrans/slugify'

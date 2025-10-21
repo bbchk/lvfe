@@ -1,7 +1,5 @@
 import s from './write_review_form_footer.module.scss'
 
-import Link from 'next/link'
-
 const WriteReviewFormFooter = () => {
   return (
     <footer className={s.footer}>
@@ -11,9 +9,9 @@ const WriteReviewFormFooter = () => {
       <p>
         Щоб ваш відгук пройшов модерацію і був опублікований, ознайомтеся, будь
         ласка, з{' '}
-        <Link className='link_primary' href='/review-write-rules'>
+        <a className='link_primary' href='/review-write-rules'>
           нашими правилами
-        </Link>
+        </a>
       </p>
     </footer>
   )

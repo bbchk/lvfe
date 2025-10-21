@@ -1,5 +1,4 @@
 import { useRef, useState } from 'react'
-import Link from 'next/link'
 import Popover from '@mui/material/Popover'
 import { useDispatch } from 'react-redux'
 
@@ -80,7 +79,7 @@ const AuthPopover = () => {
 
         <div className={`${s.not_signed_up}`}>
           <span>Не зареєстровані? </span>
-          <Link
+          <a
             aria-label='Відкрити вікно реєстрації'
             href='/'
             onClick={() => {
@@ -90,7 +89,7 @@ const AuthPopover = () => {
             className={`${s.sign_up_link} icon-link link_secondary`}
           >
             Зареєструватись
-          </Link>
+          </a>
         </div>
       </Popover>
     </li>

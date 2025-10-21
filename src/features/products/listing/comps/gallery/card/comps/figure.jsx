@@ -1,5 +1,3 @@
-import Link from 'next/link'
-
 import ImageFallback from 'comps/image/fallback_image.js'
 
 import s from './figure.module.scss'
@@ -11,7 +9,7 @@ import { startLoading } from 'store/slices/global_comps/global_comps.slice'
 const ProductFigure = ({ product, productUrl, priority }) => {
   const dispatch = useDispatch()
   return (
-    <Link
+    <a
       className={`${lcs.figure}`}
       href={productUrl('about')}
       onClick={() => dispatch(startLoading())}
@@ -33,7 +31,7 @@ const ProductFigure = ({ product, productUrl, priority }) => {
         />
         <figcaption>{product.name}</figcaption>
       </figure>
-    </Link>
+    </a>
   )
 }
 

@@ -4,7 +4,6 @@ import { useState } from 'react'
 
 import s from './sign_up_form_by_credentials.module.scss'
 
-import Link from 'next/link'
 import InputField from 'comps/input_fields/input_field'
 import PasswordInputField from 'comps/input_fields/password_input_field'
 
@@ -74,10 +73,10 @@ const SignUpForm = ({ toggleModal, toggleSignInModal }) => {
             </div> */}
       <div className={`form-text`}>
         Реєструючись, ви погоджуєтеся з умовами{' '}
-        <Link href='/privacy-policy'>
+        <a href='/privacy-policy'>
           положення про обробку і захист персональних даних
-        </Link>
-        {` `}та <Link href='/terms-of-usage'>угодою користувача</Link>
+        </a>
+        {` `}та <a href='/terms-of-usage'>угодою користувача</a>
       </div>
 
       <button
@@ -89,7 +88,7 @@ const SignUpForm = ({ toggleModal, toggleSignInModal }) => {
       </button>
       {/* signIn('credentials', { redirect: false, password: 'password' }) */}
 
-      <Link
+      <a
         className={`text-center d-block ${s.sign_in_link}`}
         href='#'
         onClick={() => {
@@ -98,7 +97,7 @@ const SignUpForm = ({ toggleModal, toggleSignInModal }) => {
         }}
       >
         Я вже зареєстрований
-      </Link>
+      </a>
     </form>
   )
 }
