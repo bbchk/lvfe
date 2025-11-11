@@ -36,3 +36,5 @@ next-env.d.ts
 
 src/pnpm-lock.yaml
 src/node_modules
+src/.pnpm-store
+

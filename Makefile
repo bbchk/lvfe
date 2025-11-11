@@ -54,7 +54,7 @@ help:
 
 # == Primary targets below ======================
 
-setup: create-network build install.deps up
+setup: create-network build install-deps up
 
 build: .env
 	docker compose build
@@ -68,25 +68,16 @@ stop:
 down:
 	docker compose down --remove-orphans
 
-$(compose_file_custom):
-	touch "$(compose_file_custom)"
+clean: down
+	rm -rf .env src/node_module src/.env "$(compose_file_custom)"
 
 # == Auxiliary targets below ======================
 
+$(compose_file_custom):
+	touch "$(compose_file_custom)"
+
 create-network:
 	docker network create lv >/dev/null 2>&1 || true
-
-# == QoL targets below ======================
-
-logs:
-	docker compose logs -f $(filter-out $@,$(MAKECMDGOALS))
-
-exec:
-	service="$(firstword $(filter-out $@,$(MAKECMDGOALS)))"
-	docker compose exec $${service:-app} bash
-
-clean: down
-	rm -rf .env src/node_module src/.env "$(compose_file_custom)"
 
 .env: $(compose_file_custom)
 	cp -i src/.env.example src/.env
@@ -102,3 +93,12 @@ clean: down
 
 install-deps:
 	docker compose run --no-deps --rm app -- pnpm install --frozen-lockfile
+
+# == QoL targets below ======================
+
+logs:
+	docker compose logs -f $(filter-out $@,$(MAKECMDGOALS))
+
+exec:
+	service="$(firstword $(filter-out $@,$(MAKECMDGOALS)))"
+	docker compose exec $${service:-app} bash

@@ -1,7 +1,7 @@
 FROM node:lts-slim AS base
 RUN npm install -g pnpm@latest-10
 
-RUN apt-get update 
+RUN apt-get update
 RUN apt-get install curl -y
 
 ARG APP_GROUP_ID="1000"
@@ -17,7 +17,7 @@ ENV APP_HOME="${HOME}/app" \
 COPY ops/bin/pre-run /usr/bin/pre-run
 
 RUN mkdir -p ${APP_HOME} && \
-  chown -R ${APP_USER_ID}:${APP_GROUP_ID} "${HOME}" "${APP_HOME}"
+  chown -R ${APP_USER_ID}:${APP_GROUP_ID} "${HOME}"
 
 WORKDIR $APP_HOME
 EXPOSE $APP_PORT
