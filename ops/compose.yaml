@@ -1,0 +1,32 @@
+include:
+  - ./common/lvops/compose.yaml
+
+services:
+  app:
+    image: ${APP_IMAGE:-}
+    platform: linux/amd64
+    hostname: lvfe
+    build:
+      context: ..
+      target: ${APP_TARGET}
+      dockerfile: ops/Dockerfile
+      args:
+        APP_GROUP_ID: ${APP_GROUP_ID:-1000}
+        APP_USER_ID: ${APP_USER_ID:-1000}
+    env_file:
+      - ../.env
+    ports:
+      - ${APP_PORT:-3000}:3000
+      - ${DEBUG_PORT:-9000}:9000
+    volumes:
+      - ../src:/var/www/app
+
+  jvbk: 
+    image: node:latest
+    hostname: jvfr-jvbk
+    command: ["sh", "-c", "npm install -g json-server && json-server --port 8080 --host 0.0.0.0 products.json"]
+    volumes:
+      - ../:/var/www
+    working_dir: /var/www
+    ports:
+      - "8080:8080"
