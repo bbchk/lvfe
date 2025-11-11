@@ -1,6 +1,3 @@
-include:
-  - ./common/lvops/compose.yaml
-
 services:
   app:
     image: ${APP_IMAGE:-}
@@ -30,3 +27,8 @@ services:
     working_dir: /var/www
     ports:
       - "8080:8080"
+
+networks:
+  default:
+    external: true
+    name: lv
