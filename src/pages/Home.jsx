@@ -42,7 +42,7 @@ const Home = () => {
         />
       </Helmet>
 
-      <div id='main_content' className='my-5'>
+      <div id='main_content' className='my-5 header-spec'>
         <CategoriesGallery rootCategories={rootCategories} />
       </div>
     </>

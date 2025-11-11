@@ -21,7 +21,7 @@ export default defineConfig({
   css: {
     preprocessorOptions: {
       scss: {
-        additionalData: `@use "src/styles/_variables.scss" as *; @use "src/styles/_mixins.scss" as *;`
+        additionalData: `@use "styles/_variables.scss" as *; @use "styles/_mixins.scss" as *;`
       }
     }
   },
@@ -31,12 +31,12 @@ export default defineConfig({
     open: true
   },
   // root: 'src',
-  // publicDir: resolve(__dirname, './assets/public'),
+  publicDir: resolve(__dirname, '../public'),
   // envDir: __dirname,
   // plugins: [Inspect()],
   base: '/',
   build: {
-    outDir: path.resolve(__dirname, './dist'),
+    outDir: path.resolve(__dirname, '../dist'),
     sourcemap: true,
     // emptyOutDir: true
     minify: true,
@@ -45,6 +45,7 @@ export default defineConfig({
     // minify: true,
     sourcemap: true,
   },
+  //TODO?: What's this?
   define: {
     'process.env': process.env
   }

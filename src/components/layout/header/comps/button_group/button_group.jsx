@@ -28,6 +28,8 @@ const ButtonGroup = () => {
   return (
     <nav className={` ${s.auth_btn_group} ${hs.icon_btn_group}`}>
       <ul>
+        {
+/*
         {session ? (
           session.user.image && (
             <IconButton
@@ -65,6 +67,8 @@ const ButtonGroup = () => {
             </IconButton>
           </>
         )}
+ */
+        }
 
         <IconButton
           tooltipText={'Кошик покупок'}
