@@ -1,16 +1,14 @@
-import { CustomTooltip } from 'comps/accessibility/tooltip'
+import { CustomTooltip } from "comps/accessibility/tooltip";
 
-import s from './icon_button.module.scss'
-
-const IconButton = ({
-  href = '#',
+const ButtonIcon = ({
+  href = "#",
   onClick,
   tooltipText,
-  ariaDescribedby = '',
+  ariaDescribedby = "",
   children,
 }) => {
   return (
-    <li onClick={onClick}>
+    <button onClick={onClick}>
       <CustomTooltip tooltipText={tooltipText}>
         <a
           className={`${s.icon_btn}`}
@@ -21,8 +19,8 @@ const IconButton = ({
           {children}
         </a>
       </CustomTooltip>
-    </li>
-  )
-}
+    </button>
+  );
+};
 
-export default IconButton
+export default ButtonIcon;
