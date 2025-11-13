@@ -10,7 +10,7 @@ const ButtonIcon = ({
   return (
     <button
       onClick={onClick}
-      className={className}
+      className={`${className} button--icon`}
       aria-label={tooltipText}
       aria-description={ariaDescribedby}
     >
