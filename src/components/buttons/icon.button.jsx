@@ -8,14 +8,16 @@ const ButtonIcon = ({
   children,
 }) => {
   return (
-    <button
-      onClick={onClick}
-      className={`${className} button--icon`}
-      aria-label={tooltipText}
-      aria-description={ariaDescribedby}
-    >
-      <CustomTooltip tooltipText={tooltipText}>{children}</CustomTooltip>
-    </button>
+    <CustomTooltip tooltipText={tooltipText}>
+      <button
+        onClick={onClick}
+        className={`${className} button--icon`}
+        aria-label={tooltipText}
+        aria-description={ariaDescribedby}
+      >
+        {children}
+      </button>
+    </CustomTooltip>
   );
 };
 

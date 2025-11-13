@@ -7,14 +7,16 @@ const LinkIcon = ({
   children,
 }) => {
   return (
-    <a
-      className={`${s.icon_btn}`}
-      href={href}
-      aria-label={tooltipText}
-      aria-description={ariaDescribedby}
-    >
-      <CustomTooltip tooltipText={tooltipText}>{children}</CustomTooltip>
-    </a>
+    <CustomTooltip tooltipText={tooltipText}>
+      <a
+        className={`${s.icon_btn}`}
+        href={href}
+        aria-label={tooltipText}
+        aria-description={ariaDescribedby}
+      >
+        {children}
+      </a>
+    </CustomTooltip>
   );
 };
 

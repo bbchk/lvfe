@@ -14,7 +14,6 @@ const CartItem = ({ product, actions }) => {
           alt='Picture of the product'
           width={250}
           height={250}
-          priority
         />
         <p>{product.name}</p>
         <button

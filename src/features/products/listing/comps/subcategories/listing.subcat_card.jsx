@@ -20,7 +20,7 @@ const SubcategoryCard = ({ category }) => {
         width={150}
         height={150}
         alt='підкатегорія'
-        priority
+        // priority
       />
       <div>
         <p> {name}</p>

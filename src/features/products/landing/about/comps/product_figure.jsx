@@ -28,7 +28,6 @@ const ProductFigure = ({ images }) => {
           height={500}
           sizes='(max-width: 600px) 100vw, (max-width: 768px) 60vw, 50vw'
           className={`${s.image}`}
-          priority
         />
       </div>
 

@@ -21,7 +21,7 @@ const WishListGallery = () => {
             product.like = like
             return (
               <div key={product._id} className={`col ${s.col}`}>
-                <ProductCard product={product} priority={true} />
+                <ProductCard product={product} />
               </div>
             )
           })}
