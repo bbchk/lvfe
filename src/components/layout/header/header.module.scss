@@ -53,7 +53,6 @@
 
   & > * {
     padding: 1rem;
-    border: 0;
 
     font-size: 0.8em;
   }
@@ -64,6 +63,8 @@
 
   border: 0;
   border-radius: 1rem 0 0 1rem;
+
+  transition: box-shadow ease-in-out 0.25s;
 
   color: $color-blue-indep;
 }
@@ -134,6 +135,11 @@
 .button__cart:hover {
   background: rgba($color-secondary, 0.1);
   border-color: $color-secondary;
+  color: $color-secondary;
+}
+
+.search_button:hover {
+  border-color: $color-confirm !important;
   color: $color-secondary;
 }
 
