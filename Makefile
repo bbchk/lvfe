@@ -72,7 +72,7 @@ down:
 	docker compose down --remove-orphans
 
 clean: down
-	rm -rf .env src/node_module src/.env "$(compose_file_custom)"
+	rm -rf .env src/node_module src/.env "$(compose_file_custom)" src/dist
 
 # == Auxiliary targets below ======================
 

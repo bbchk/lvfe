@@ -6,6 +6,7 @@ import react from '@vitejs/plugin-react'
 // console.log("HELLO:" + resolve(__dirname, '../public'))
 
 export default defineConfig({
+  // plugins: [Inspect()],
   plugins: [react()],
   resolve: {
     alias: {
@@ -34,8 +35,7 @@ export default defineConfig({
   },
   // root: 'src',
   publicDir: resolve(__dirname, '../public'),
-  // envDir: __dirname,
-  // plugins: [Inspect()],
+  // envDir: ,
   base: '/',
   build: {
     outDir: resolve(__dirname, './dist'),

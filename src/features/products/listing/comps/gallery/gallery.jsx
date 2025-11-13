@@ -15,9 +15,6 @@ const ProductGallery = ({
     <main
       id='main_content'
       className={`${s.g}`}
-      style={{
-        '--children-number': 4,
-      }}
     >
       {products.map((product, index) => {
 

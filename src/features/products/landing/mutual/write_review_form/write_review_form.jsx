@@ -70,10 +70,6 @@ const WriteReviewForm = () => {
         rows={5}
       />
 
-      <imgLoad
-        selectedImages={selectedImages}
-        setSelectedImages={setSelectedImages}
-      />
       <WriteReviewFormFooter />
     </form>
   )
