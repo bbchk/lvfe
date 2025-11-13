@@ -6,7 +6,7 @@ import LoadingOverlay from "comps/loading/overlay";
 
 // Lazily-loaded components
 const CustomHotkeys = lazy(() => import("comps/accessibility/hotkeys.jsx"));
-const Header = lazy(() => import("comps/layout/header/header.jsx"));
+import Header from "comps/layout/header";
 const Footer = lazy(() => import("comps/layout/footer/footer.jsx"));
 
 // Lazy load pages
