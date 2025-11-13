@@ -11,4 +11,5 @@ Node version: $(node -v) \n
 Current environment:  \n
 ----------------\n"
 
+echo "$@"
 exec "$@"

@@ -56,6 +56,9 @@ help:
 
 setup: create-network build install-deps up
 
+compile:
+	docker compose run --no-deps --rm app npm run build
+
 build: .env
 	docker compose build
 
