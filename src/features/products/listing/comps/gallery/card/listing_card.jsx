@@ -5,7 +5,6 @@ import { transliterate } from '@bbuukk/slugtrans/transliterate'
 import ProductFigure from './comps/figure'
 import ProductRating from './comps/rating'
 import BuyInfo from './comps/buy_info'
-import LikeButton from './comps/like_btn'
 
 const ListingProductCard = ({ product, ...props }) => {
   const productUrl = (activeTab) =>
@@ -21,7 +20,6 @@ const ListingProductCard = ({ product, ...props }) => {
         productUrl={productUrl}
         priority={priority}
       />
-      <LikeButton product={product} />
       <ProductRating product={product} productUrl={productUrl} />
       <BuyInfo product={product} />
     </article>

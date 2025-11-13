@@ -11,13 +11,13 @@ const Footer = lazy(() => import("comps/layout/footer/footer.jsx"));
 const Home = lazy(() => import("pages/Home"));
 const ProductsListing = lazy(() => import("pages/ProductsListing"));
 const ProductDetails = lazy(() => import("pages/ProductDetails"));
-const SignIn = lazy(() => import("pages/auth/SignIn"));
-const AboutUs = lazy(() => import("pages/info/AboutUs"));
-const PrivacyPolicy = lazy(() => import("pages/info/PrivacyPolicy"));
-const TermsOfUsage = lazy(() => import("pages/info/TermsOfUsage"));
-const UserProfile = lazy(() => import("pages/user/UserProfile"));
-const WishList = lazy(() => import("pages/user/WishList"));
-const OrdersList = lazy(() => import("pages/user/OrdersList"));
+// const SignIn = lazy(() => import("pages/auth/SignIn"));
+// const AboutUs = lazy(() => import("pages/info/AboutUs"));
+// const PrivacyPolicy = lazy(() => import("pages/info/PrivacyPolicy"));
+// const TermsOfUsage = lazy(() => import("pages/info/TermsOfUsage"));
+// const UserProfile = lazy(() => import("pages/user/UserProfile"));
+// const WishList = lazy(() => import("pages/user/WishList"));
+// const OrdersList = lazy(() => import("pages/user/OrdersList"));
 const NotFound = lazy(() => import("comps/layout/404.jsx"));
 
 // const MainOffcanvas = lazy(() => import('comps/modals/main_offcanvas/main_offcanvas.js'));
@@ -72,8 +72,9 @@ function MainContent() {
           {/* Home */}
           <Route path="/" element={<Home />} />
 
-          {/* Auth */}
+          {/*
           <Route path="/auth/signin" element={<SignIn />} />
+          */}
 
           {/* Products */}
           <Route
@@ -85,15 +86,17 @@ function MainContent() {
             element={<ProductDetails />}
           />
 
-          {/* User pages */}
+          {/* User pages
           <Route path="/user/personal_data" element={<UserProfile />} />
           <Route path="/user/wish_list" element={<WishList />} />
           <Route path="/user/orders_list" element={<OrdersList />} />
+          */}
 
-          {/* Info pages */}
+          {/* Info pages
           <Route path="/info/about_us" element={<AboutUs />} />
           <Route path="/info/privacy-policy" element={<PrivacyPolicy />} />
           <Route path="/info/terms-of-usage" element={<TermsOfUsage />} />
+          */}
 
           {/* 404 */}
           <Route path="*" element={<NotFound />} />
@@ -115,19 +118,15 @@ function Modals() {
     mainOffcanvasOpen,
   } = useSelector((state) => state.modals);
 
-  return (
-    <Suspense fallback={null}>
-      {cartModalOpen && <CartModal />}
-    </Suspense>
-  );
+  return <Suspense fallback={null}>{cartModalOpen && <CartModal />}</Suspense>;
 }
 
-      // {mainOffcanvasOpen && <MainOffcanvas />}
-      // {deleteAccountModalOpen && <DeleteAccountModal />}
-      // {changePasswordModalOpen && <ChangePasswordModal />}
-      // {signInModalOpen && <SignInModal />}
-      // {signUpModalOpen && <SignUpModal />}
-      // {writeReviewModalOpen && <WriteReviewModal />}
-      // {hotkeysModalOpen && <HotkeysModal />}
+// {mainOffcanvasOpen && <MainOffcanvas />}
+// {deleteAccountModalOpen && <DeleteAccountModal />}
+// {changePasswordModalOpen && <ChangePasswordModal />}
+// {signInModalOpen && <SignInModal />}
+// {signUpModalOpen && <SignUpModal />}
+// {writeReviewModalOpen && <WriteReviewModal />}
+// {hotkeysModalOpen && <HotkeysModal />}
 
 export default App;

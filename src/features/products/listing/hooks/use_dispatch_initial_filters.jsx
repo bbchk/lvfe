@@ -1,33 +1,33 @@
-import { useEffect } from 'react'
-import { setFilters } from 'store/slices/filters.slice'
-import { useDispatch } from 'react-redux'
-import { useNavigate, useLocation, useParams } from 'react-router-dom'
+import { useEffect } from "react";
+import { setFilters } from "store/slices/filters.slice";
+import { useDispatch } from "react-redux";
+import { useNavigate, useLocation, useParams } from "react-router-dom";
 
 const getFilterMapFromStr = (filtersStr) => {
-  let filters = {}
+  let filters = {};
   if (filtersStr) {
-    filtersStr.split(';').forEach((fs) => {
-      const [filterName, filterValue] = fs.split('=')
-      filters[filterName] = filterValue.split(',')
-    })
+    filtersStr.split(";").forEach((fs) => {
+      const [filterName, filterValue] = fs.split("=");
+      filters[filterName] = filterValue.split(",");
+    });
   }
-  return filters
-}
+  return filters;
+};
 
 export const useDispatchInitialFilters = () => {
-  const dispatch = useDispatch()
-  const location = useLocation()
-  const params = useParams()
+  const dispatch = useDispatch();
+  const location = useLocation();
+  const params = useParams();
 
-  const filtersStr = params.filtersStr || new URLSearchParams(location.search).get('filtersStr')
+  const filtersStr =
+    params.filtersStr || new URLSearchParams(location.search).get("filtersStr");
 
   useEffect(() => {
-    const filtersMap = getFilterMapFromStr(filtersStr)
-    dispatch(setFilters(filtersMap))
+    const filtersMap = getFilterMapFromStr(filtersStr);
+    dispatch(setFilters(filtersMap));
 
     return () => {
-      dispatch(setFilters({}))
-    }
-  }, [])
-}
-
+      dispatch(setFilters({}));
+    };
+  }, []);
+};

@@ -1,4 +1,4 @@
-import React, { useEffect, useState, Suspense } from "react";
+import React, { useEffect, useState, Suspense, useMemo } from "react";
 import { Helmet } from "react-helmet-async";
 import { useParams } from "react-router-dom";
 import axios from "axios";
@@ -14,8 +14,7 @@ import { untransliterate } from "@bbuukk/slugtrans/transliterate";
 
 import { useMediaQuery } from "@mui/material";
 
-import { useMemo } from 'react';
-import Breadcrumbs from 'comps/navigation/breadcrumbs';
+import Breadcrumbs from "comps/navigation/breadcrumbs";
 
 import {
   body,
@@ -29,30 +28,41 @@ import {
 } from "./ProductsListing.module.scss";
 
 const NoProductYet = React.lazy(() => import("comps/warnings/no_products"));
-
 const FiltersAccordion = React.lazy(
   () =>
     import(
       "features/products/listing/comps/filter/filters_accordion/filters_accordion"
     ),
 );
-
 const ProductsPagination = React.lazy(
   () => import("features/products/listing/comps/gallery/pagination/pagination"),
 );
 const Selected = React.lazy(
   () => import("features/products/listing/comps/filter/selected"),
 );
-
-import SortGroup from "features/products/listing/comps/filter/sort-group";
-import ProductGallery from "features/products/listing/comps/gallery/gallery";
-
 const SubcategoriesGallery = React.lazy(
   () => import("features/products/listing/comps/subcategories/gallery"),
 );
 
+import SortGroup from "features/products/listing/comps/filter/sort-group";
+import ProductGallery from "features/products/listing/comps/gallery/gallery";
+
+let isBySearch = null;
+let searchQuery = null;
+
+function createListingUrl(categoryPath, filtersStr) {
+  const method = isBySearch ? "by-query" : "by-category-path";
+  const searchBy = isBySearch ? searchQuery : categoryPath;
+  return `/products/${method}/${searchBy}/filtered-by/${filtersStr || "default"}`;
+}
+
+function getPage(filtersStr) {
+  return filtersStr?.match(/page=(\d+)/)?.[1] || 1;
+}
+
 const ProductsListing = () => {
   const { categoryPath, filtersStr } = useParams();
+
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -62,31 +72,13 @@ const ProductsListing = () => {
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true);
-      setError(null);
 
-      const isBySearch = categoryPath.includes("search=");
+      isBySearch = categoryPath.includes("search=");
+      searchQuery = categoryPath.split("search=")[1];
+      const res = await axios.get(createListingUrl(categoryPath, filtersStr));
+      setData({ ...res.data, page: getPage(filtersStr) });
 
-      try {
-        const method = isBySearch ? "by-query" : "by-category-path";
-        const searchBy = isBySearch
-          ? categoryPath.split("search=")[1]
-          : categoryPath;
-        const url = `/products/${method}/${searchBy}/filtered-by/${filtersStr || "default"}`;
-
-        const res = await axios.get(url);
-        const responseData = res.data;
-
-        const FIRST_PAGE = 1;
-        setData({
-          ...responseData,
-          page: filtersStr?.match(/page=(\d+)/)?.[1] || FIRST_PAGE,
-        });
-      } catch (e) {
-        console.error("Error fetching products:", e);
-        setError(e);
-      } finally {
-        setLoading(false);
-      }
+      setLoading(false);
     };
 
     fetchData();
@@ -110,7 +102,7 @@ const ProductsListing = () => {
     return <div>Error loading products. Please try again.</div>;
   }
 
-  const searchBy = categoryPath.includes("search=")
+  const searchBy = isBySearch
     ? `Результати пошуку "${untransliterate(unslugify(categoryPath.split("search=")[1]))}"`
     : `Товари у категорії "${category.path}"`;
 
@@ -133,9 +125,6 @@ const ProductsListing = () => {
     </>
   );
 };
-
-
-export default ProductsListing;
 
 const ProductListingBody = ({
   data: {
@@ -162,7 +151,7 @@ const ProductListingBody = ({
             <div className={sort_group}>
               <SortGroup />
             </div>
-            <div className={''}></div>
+            <div className={""}></div>
             {!isSmallViewport && (
               <div className={filters}>
                 <Suspense fallback={<LoadingSpinner />}>
@@ -175,7 +164,7 @@ const ProductListingBody = ({
             )}
 
             <div className={gallery}>
-              <div className={''}>
+              <div className={""}>
                 <ProductGallery
                   activeProducts={productsData}
                   activeCategory={category}
@@ -198,13 +187,12 @@ const ProductListingBody = ({
   );
 };
 
-
 const ListingHeader = ({ category }) => {
   const { categoryPath } = useParams();
 
   const labelText = useMemo(() => {
-    if (categoryPath?.includes('search=')) {
-      const slugQuery = categoryPath.split('search=')[1];
+    if (isBySearch) {
+      const slugQuery = categoryPath.split("search=")[1];
       const query = untransliterate(unslugify(slugQuery));
       return `Результати пошуку «${query}»`;
     }
@@ -219,3 +207,4 @@ const ListingHeader = ({ category }) => {
   );
 };
 
+export default ProductsListing;
