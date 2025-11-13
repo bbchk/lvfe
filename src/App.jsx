@@ -22,7 +22,15 @@ const WishList = lazy(() => import("pages/user/WishList"));
 const OrdersList = lazy(() => import("pages/user/OrdersList"));
 const NotFound = lazy(() => import("comps/layout/404.jsx"));
 
-// You were using this variable but had it commented out.
+// const MainOffcanvas = lazy(() => import('comps/modals/main_offcanvas/main_offcanvas.js'));
+// const ChangePasswordModal = lazy(() => import('comps/modals/change_password/change_password_modal'));
+// const SignInModal = lazy(() => import('comps/modals/auth/sign_in_modal/sign_in_modal'));
+// const SignUpModal = lazy(() => import('comps/modals/auth/sign_up_modal/sign_up_modal'));
+// const DeleteAccountModal = lazy(() => import('comps/modals/delete_account/delete_account_modal.js'));
+const CartModal = lazy(() => import("comps/modals/cart/cart_modal"));
+// const WriteReviewModal = lazy(() => import('comps/modals/reviews/write_review_modal'));
+// const HotkeysModal = lazy(() => import('comps/modals/hotkeys/hotkeys.modal'));
+
 const balsamiqSansClass = "balsamiq-sans";
 
 function App() {
@@ -45,6 +53,7 @@ function App() {
         <div className={balsamiqSansClass} style={{ minHeight: "100vh" }}>
           <MainContent />
         </div>
+        <Modals />
 
         <Footer />
       </Suspense>
@@ -96,31 +105,31 @@ function MainContent() {
   );
 }
 
-// Don't forget to export your main App component
-// function Modals() {
-//   const {
-//     signInModalOpen,
-//     signUpModalOpen,
-//     changePasswordModalOpen,
-//     deleteAccountModalOpen,
-//     cartModalOpen,
-//     writeReviewModalOpen,
-//     hotkeysModalOpen,
-//     mainOffcanvasOpen,
-//   } = useSelector((state) => state.modals);
-//
-//   return (
-//     <Suspense fallback={null}>
-//       {mainOffcanvasOpen && <MainOffcanvas />}
-//       {deleteAccountModalOpen && <DeleteAccountModal />}
-//       {changePasswordModalOpen && <ChangePasswordModal />}
-//       {signInModalOpen && <SignInModal />}
-//       {signUpModalOpen && <SignUpModal />}
-//       {writeReviewModalOpen && <WriteReviewModal />}
-//       {cartModalOpen && <CartModal />}
-//       {hotkeysModalOpen && <HotkeysModal />}
-//     </Suspense>
-//   );
-// }
+function Modals() {
+  const {
+    signInModalOpen,
+    signUpModalOpen,
+    changePasswordModalOpen,
+    deleteAccountModalOpen,
+    cartModalOpen,
+    writeReviewModalOpen,
+    hotkeysModalOpen,
+    mainOffcanvasOpen,
+  } = useSelector((state) => state.modals);
+
+  return (
+    <Suspense fallback={null}>
+      {cartModalOpen && <CartModal />}
+    </Suspense>
+  );
+}
+
+      // {mainOffcanvasOpen && <MainOffcanvas />}
+      // {deleteAccountModalOpen && <DeleteAccountModal />}
+      // {changePasswordModalOpen && <ChangePasswordModal />}
+      // {signInModalOpen && <SignInModal />}
+      // {signUpModalOpen && <SignUpModal />}
+      // {writeReviewModalOpen && <WriteReviewModal />}
+      // {hotkeysModalOpen && <HotkeysModal />}
 
 export default App;

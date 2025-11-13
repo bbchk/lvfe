@@ -18,17 +18,16 @@ const { CART_MODAL, SIGN_IN_MODAL } = GLOBAL_COMPS
 import CartItem from './cart_item/cart_item'
 
 import { useCart } from 'hooks/use_cart.js'
-import { useSession, signIn, signOut } from '#src/contexts/AuthContext'
+// import { useSession, signIn, signOut } from '#src/contexts/AuthContext'
 import axios from 'axios'
 import { useNavigate, useLocation } from 'react-router-dom'
-import { balsamiqSans } from '#src/App.jsx'
 
 const CartModal = () => {
   const navigate = useNavigate()
   const dispatch = useDispatch()
   const { cartModalOpen } = useSelector((state) => state.modals)
 
-  const { data: session } = useSession()
+  // const { data: session } = useSession()
 
   const [cart, add, remove, removeAll] = useCart()
   const { items, totalCost } = cart
@@ -67,10 +66,10 @@ const CartModal = () => {
       maxWidth='lg'
       fullScreen={fullScreen}
     >
-      <DialogTitle className={`${ms.header} ${balsamiqSans.className}`}>
+      <DialogTitle className={`${ms.header}`}>
         Кошик покупок
       </DialogTitle>
-      <DialogContent className={`${s.body} ${balsamiqSans.className}`}>
+      <DialogContent className={`${s.body}`}>
         {items?.length === 0 ? (
           <div>
             <img
