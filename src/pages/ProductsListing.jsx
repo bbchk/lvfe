@@ -9,13 +9,61 @@ import { useUpdateFilters } from "features/products/listing/hooks/use_update_fil
 import { useDispatchInitialFilters } from "features/products/listing/hooks/use_dispatch_initial_filters";
 import { usePageValidation } from "features/products/listing/hooks/use_page_validation";
 
-import ProductListingBody from "features/products/listing/layout/listing.body";
-import ListingHeader from "features/products/listing/layout/listing.header";
-
 import { unslugify } from "@bbuukk/slugtrans/slugify";
 import { untransliterate } from "@bbuukk/slugtrans/transliterate";
 
-// Lazy load components
+import { useMediaQuery, ThemeProvider } from "@mui/material";
+import { useSelector } from "react-redux";
+
+import { useMemo } from 'react';
+import Breadcrumbs from 'comps/navigation/breadcrumbs';
+
+import {
+  body,
+  filters_offcanvas_toggler,
+  selected,
+  sort_group,
+  filters,
+  gallery,
+  no_products,
+  listing_header,
+  label,
+} from "./ProductsListing.module.scss";
+
+const NoProductYet = React.lazy(() => import("comps/warnings/no_products"));
+
+const FiltersAccordion = React.lazy(
+  () =>
+    import(
+      "features/products/listing/comps/filter/filters_accordion/filters_accordion"
+    ),
+);
+
+const FiltersOffcanvas = React.lazy(
+  () =>
+    import(
+      "features/products/listing/comps/filter/filiters_offcanvas/filters_offcanvas"
+    ),
+);
+
+const ProductsPagination = React.lazy(
+  () => import("features/products/listing/comps/gallery/pagination/pagination"),
+);
+
+const Selected = React.lazy(
+  () => import("features/products/listing/comps/filter/selected"),
+);
+
+const FiltersOffcanvasToggler = React.lazy(
+  () =>
+    import(
+      "features/products/listing/comps/filter/filiters_offcanvas/filters_offcanvas_toggler"
+    ),
+);
+
+import SortGroup from "features/products/listing/comps/filter/sort-group";
+import ProductGallery from "features/products/listing/comps/gallery/gallery";
+
 const SubcategoriesGallery = React.lazy(
   () => import("features/products/listing/comps/subcategories/gallery"),
 );
@@ -92,6 +140,7 @@ const ProductsListing = () => {
 
       <>
         <ListingHeader category={category} />
+
         <Suspense fallback={<LoadingSpinner />}>
           <SubcategoriesGallery subcategories={subcategories} />
         </Suspense>
@@ -104,3 +153,105 @@ const ProductsListing = () => {
 
 
 export default ProductsListing;
+
+const ProductListingBody = ({
+  data: {
+    filtersMap,
+    minMaxPrice,
+    products: productsData,
+    productsCount,
+    category,
+    numPages,
+    page,
+  },
+}) => {
+  const isSmallViewport = useMediaQuery("(max-width:1100px)");
+  const { filterOffcanvasOpen } = useSelector((state) => state.modals);
+
+  return (
+    <>
+      {productsCount > 0 ? (
+        <>
+          {filterOffcanvasOpen && (
+            <Suspense fallback={<LoadingSpinner />}>
+              <FiltersOffcanvas
+                filters={filtersMap}
+                minMaxPrice={minMaxPrice}
+                productsCount={productsCount}
+              />
+            </Suspense>
+          )}
+
+          <div className={body}>
+            {isSmallViewport && (
+              <div className={filters_offcanvas_toggler}>
+                <Suspense fallback={<LoadingSpinner />}>
+                  <FiltersOffcanvasToggler />
+                </Suspense>
+              </div>
+            )}
+            <div className={selected}>
+              <Suspense fallback={<LoadingSpinner />}>
+                <Selected productsCount={productsCount} />
+              </Suspense>
+            </div>
+            <div className={sort_group}>
+              <SortGroup />
+            </div>
+            <div className={''}></div>
+            {!isSmallViewport && (
+              <div className={filters}>
+                <Suspense fallback={<LoadingSpinner />}>
+                  <FiltersAccordion
+                    filters={filtersMap}
+                    minMaxPrice={minMaxPrice}
+                  />
+                </Suspense>
+              </div>
+            )}
+
+            <div className={gallery}>
+              <div className={''}>
+                <ProductGallery
+                  activeProducts={productsData}
+                  activeCategory={category}
+                />
+              </div>
+              <Suspense fallback={<LoadingSpinner />}>
+                <ProductsPagination numPages={numPages} activePageId={page} />
+              </Suspense>
+            </div>
+          </div>
+        </>
+      ) : (
+        <div className={no_products}>
+          <Suspense fallback={<LoadingSpinner />}>
+            <NoProductYet />
+          </Suspense>
+        </div>
+      )}
+    </>
+  );
+};
+
+
+const ListingHeader = ({ category }) => {
+  const { categoryPath } = useParams();
+
+  const labelText = useMemo(() => {
+    if (categoryPath?.includes('search=')) {
+      const slugQuery = categoryPath.split('search=')[1];
+      const query = untransliterate(unslugify(slugQuery));
+      return `Результати пошуку «${query}»`;
+    }
+    return category?.name;
+  }, [categoryPath, category]);
+
+  return (
+    <div className={listing_header}>
+      <Breadcrumbs category={category} />
+      <h1 className={label}>{labelText}</h1>
+    </div>
+  );
+};
+

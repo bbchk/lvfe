@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Helmet } from 'react-helmet-async'
+import { Link } from 'react-router-dom'
 import axios from 'axios'
 
 import { useStopLoading } from 'hooks/useStopLoading'
@@ -116,9 +117,9 @@ const Card = ({ category, subcategories }) => {
 
   return (
     <div className={cat_card}>
-      <a
-        href={categoryPathSlug(category.path)}
-        onClick={() => handleClick()}
+      <Link
+        to={categoryPathSlug(category.path)}
+        onClick={handleClick}
         aria-label={`${category.name} основна категорія`}
       >
         <ImageFallback
@@ -130,16 +131,16 @@ const Card = ({ category, subcategories }) => {
           sizes="(max-width: 600px) 50vw, (max-width: 768px) 20vw, (max-width: 1000px) 25vw, (max-width: 1200px) 20vw, 15vw"
         />
         <h2>{category.name}</h2>
-      </a>
+      </Link>
 
       <TabIndexButton aria-label={`Переглянути підкатегорії ${category.name}`}>
         <ul className={subcat_list}>
           {subcategoriesWithElepsis.map(({ _id, path, name }) => {
             return (
               <li key={_id}>
-                <a
-                  href={categoryPathSlug(path)}
-                  onClick={() => handleClick()}
+                <Link
+                  to={categoryPathSlug(path)}
+                  onClick={handleClick}
                   aria-label={
                     path === category.path
                       ? `Переclглянути більше підкатегорій ${category.name}`
@@ -147,7 +148,7 @@ const Card = ({ category, subcategories }) => {
                   }
                 >
                   {name}
-                </a>
+                </Link>
               </li>
             );
           })}
@@ -158,3 +159,4 @@ const Card = ({ category, subcategories }) => {
 };
 
 export default Home
+

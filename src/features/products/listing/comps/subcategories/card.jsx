@@ -1,4 +1,5 @@
 import s from "./card.module.scss";
+import { Link } from "react-router-dom";
 
 import { slugify } from "@bbuukk/slugtrans/slugify";
 import { transliterate } from "@bbuukk/slugtrans/transliterate";
@@ -12,7 +13,7 @@ const SubcategoryCard = ({ category }) => {
   )}/page=1`;
 
   return (
-    <a href={categoryPathSlug} as={categoryPathSlug} className={`${s.card}`}>
+    <Link to={categoryPathSlug} as={categoryPathSlug} className={`${s.card}`}>
       <ImageFallback
         src={imagePath}
         fallbackSrc={"/assets/goods_placeholder.svg"}
@@ -20,12 +21,9 @@ const SubcategoryCard = ({ category }) => {
         height={150}
         sizes="(max-width: 768px) 25vw,(max-width: 1200px) 151vw, 10vw"
         alt="підкатегорія"
-        // priority
       />
-      <div>
-        <p> {name}</p>
-      </div>
-    </a>
+      <p>{name}</p>
+    </Link>
   );
 };
 
