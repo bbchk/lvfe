@@ -12,15 +12,13 @@ import { usePageValidation } from "features/products/listing/hooks/use_page_vali
 import { unslugify } from "@bbuukk/slugtrans/slugify";
 import { untransliterate } from "@bbuukk/slugtrans/transliterate";
 
-import { useMediaQuery, ThemeProvider } from "@mui/material";
-import { useSelector } from "react-redux";
+import { useMediaQuery } from "@mui/material";
 
 import { useMemo } from 'react';
 import Breadcrumbs from 'comps/navigation/breadcrumbs';
 
 import {
   body,
-  filters_offcanvas_toggler,
   selected,
   sort_group,
   filters,
@@ -39,26 +37,11 @@ const FiltersAccordion = React.lazy(
     ),
 );
 
-const FiltersOffcanvas = React.lazy(
-  () =>
-    import(
-      "features/products/listing/comps/filter/filiters_offcanvas/filters_offcanvas"
-    ),
-);
-
 const ProductsPagination = React.lazy(
   () => import("features/products/listing/comps/gallery/pagination/pagination"),
 );
-
 const Selected = React.lazy(
   () => import("features/products/listing/comps/filter/selected"),
-);
-
-const FiltersOffcanvasToggler = React.lazy(
-  () =>
-    import(
-      "features/products/listing/comps/filter/filiters_offcanvas/filters_offcanvas_toggler"
-    ),
 );
 
 import SortGroup from "features/products/listing/comps/filter/sort-group";
@@ -166,30 +149,11 @@ const ProductListingBody = ({
   },
 }) => {
   const isSmallViewport = useMediaQuery("(max-width:1100px)");
-  const { filterOffcanvasOpen } = useSelector((state) => state.modals);
-
   return (
     <>
       {productsCount > 0 ? (
         <>
-          {filterOffcanvasOpen && (
-            <Suspense fallback={<LoadingSpinner />}>
-              <FiltersOffcanvas
-                filters={filtersMap}
-                minMaxPrice={minMaxPrice}
-                productsCount={productsCount}
-              />
-            </Suspense>
-          )}
-
           <div className={body}>
-            {isSmallViewport && (
-              <div className={filters_offcanvas_toggler}>
-                <Suspense fallback={<LoadingSpinner />}>
-                  <FiltersOffcanvasToggler />
-                </Suspense>
-              </div>
-            )}
             <div className={selected}>
               <Suspense fallback={<LoadingSpinner />}>
                 <Selected productsCount={productsCount} />
