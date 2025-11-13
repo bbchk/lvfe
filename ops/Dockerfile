@@ -16,7 +16,7 @@ ENV APP_HOME="${HOME}/app" \
 
 COPY ops/bin/pre-run /usr/bin/pre-run
 
-RUN mkdir -p ${APP_HOME} && \
+RUN mkdir -p ${APP_HOME} ${HOME}/dist && \
   chown -R ${APP_USER_ID}:${APP_GROUP_ID} "${HOME}"
 
 WORKDIR $APP_HOME
