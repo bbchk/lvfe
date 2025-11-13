@@ -78,7 +78,6 @@ const Header = () => {
 
 export const Logo = () => {
   return (
-    <>
       <a className={logo} href="/">
         <img
           src={"/assets/logo.svg"}
@@ -89,7 +88,6 @@ export const Logo = () => {
         />
         <span>Живий світ</span>
       </a>
-    </>
   );
 };
 
