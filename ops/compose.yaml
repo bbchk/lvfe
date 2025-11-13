@@ -17,6 +17,7 @@ services:
       - ${DEBUG_PORT:-9000}:9000
     volumes:
       - ../src:/var/www/app
+      - ../public:/var/www/public
 
 networks:
   default:

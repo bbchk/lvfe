@@ -1,5 +1,11 @@
 @use './styles/variables' as *;
 
+@mixin media($breakpoint) {
+  @media (max-width: $breakpoint) {
+    @content;
+  }
+}
+
 @mixin underline(
   $colorFrom1: white,
   $colorTo1: white,
