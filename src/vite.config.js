@@ -38,7 +38,7 @@ export default defineConfig({
   // plugins: [Inspect()],
   base: '/',
   build: {
-    outDir: resolve(__dirname, '../dist'),
+    outDir: resolve(__dirname, './dist'),
     sourcemap: true,
     // emptyOutDir: true
     minify: true,

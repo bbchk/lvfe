@@ -37,3 +37,6 @@ next-env.d.ts
 src/node_modules
 src/.pnpm-store
 
+src/.gitignore
+
+src/dist
