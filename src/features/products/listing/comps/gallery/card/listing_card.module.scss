@@ -1,5 +1,5 @@
-@use './styles/variables' as *;
-@use './styles/mixins' as *;
+@use "./styles/variables" as *;
+@use "./styles/mixins" as *;
 
 //todo make better hover effect
 
@@ -32,11 +32,8 @@
     margin-top: 0.4rem;
     flex: 0 1 5%;
   }
-
-  &:hover {
-    /* .figure { */
-    /*   text-decoration: underline; */
-    /*   color: saturate($color: $color-blue-dasl, $amount: 40%); */
-    /* } */
-  }
 }
+
+/* ==== PSEUDO ============== */
+
+/* ==== RESPONSIVE ============== */
